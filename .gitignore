@@ -1,0 +1,19 @@
+# ignore Maven specific files
+**/target/
+
+# ignore Eclipse specific files
+**/.settings/
+**/.project
+**/.classpath
+**/.factorypath
+
+# ignore IDEA specific files
+**/out/
+**/.idea/
+**/*.iml
+
+**/build/
+
+# Ignore java classfiles
+**/*.class
+
