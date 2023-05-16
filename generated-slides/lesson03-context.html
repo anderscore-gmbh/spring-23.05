@@ -1,0 +1,620 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 3 - ApplicationContext Konfiguration</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script><script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_3_applicationcontext_konfiguration" data-state="no-title-footer"><h2>Lektion 3 - ApplicationContext Konfiguration</h2></section>
+<section id="_applicationcontext_konfiguration"><h2>ApplicationContext Konfiguration</h2><div class="paragraph heading"><p>Möglichkeiten den ApplicationContext zu konfigurieren:</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>XML</p></li><li><p>Annotationen</p></li><li><p>Java-Methoden</p></li><li><p>Lambda Ausdrücke (seit Spring 5)</p></li><li><p>&#8230;&#8203; und jede Kombination davon!</p></li></ol></div></section>
+<section><section id="_beispielanwendung_wa_tor" class="columns"><h2>Beispielanwendung: Wa-Tor</h2><div class="openblock"><div class="content"><div class="ulist"><ul><li><p>Diskrete Simulation eines<br>
+einfachen Räuber-Beute-Modells</p></li><li><p>Es gibt nur Fische und Haie</p></li><li><p>Simuliert toroidalen<br>
+"Planeten" aus Wasser</p></li><li><p>Entspricht rechteckigem Spielfeld, das in<br>
+Zeilen und Spalten unterteilt ist und<br>
+dessen Ende mit dem Anfang verbunden ist</p></li><li><p>Eine Zelle ist von max. einem Wesen besetzt</p></li></ul></div>
+<div class="paragraph"><p>Siehe: <a href="https://de.wikipedia.org/wiki/Wator" class="bare">https://de.wikipedia.org/wiki/Wator</a></p></div></div></div><div class="paragraph"><p><span class="image"><img src="images/torus.jpg" alt="torus"></span></p></div></section><section id="_regeln_für_einen_fisch"><h2>Regeln für einen Fisch</h2><div class="ulist"><ul><li><p>Schwimmt zufällig auf angrenzendes Feld (sofern leer)</p></li><li><p>Vermehrt sich nach Ablauf einer bestimmten Zeit (<em>Breed Time</em>),
+indem neuer Fisch in angrenzendem Feld geboren wird</p></li><li><p>Bewegt sich nur horizontal oder vertikal</p></li></ul></div>
+<div class="paragraph"><p><br></p></div>
+<div class="paragraph heading"><p>Regeln für einen Hai</p></div>
+<div class="ulist"><ul><li><p>Hai frisst Fisch auf einem angrenzenden Feld (falls vorhanden)</p></li><li><p>Verhungert nach <em>Starve Time</em></p></li><li><p>Verhält sich ansonsten wie ein Fisch</p></li></ul></div></section></section>
+<section id="_anwendungsmodell"><h2>Anwendungsmodell</h2><div class="imageblock" style="text-align: center"><img src="images/wator-draft.svg" alt="wator draft" width="1200" height="800"></div></section>
+<section id="_zusammenstöpseln_der_anwendung_ohne_spring"><h2>Zusammenstöpseln der Anwendung (ohne Spring)</h2><div class="title">WatorAppNoSpring.java</div><pre class="CodeRay listingblock"><code class="java language-java">    <span class="directive">private</span> <span class="type">void</span> plumb() {
+        <span class="predefined-type">Random</span> rnd = ThreadLocalRandom.current();
+
+        torus = <span class="keyword">new</span> SimpleTorus(<span class="integer">60</span>, <span class="integer">10</span>);
+
+        FishStrategy fishStrategy = <span class="keyword">new</span> FishStrategy();
+        fishStrategy.setBreedTime(<span class="integer">3</span>);
+        fishStrategy.setRnd(rnd);
+        fishStrategy.setTorus(torus);
+
+        SharkStrategy sharkStrategy = <span class="keyword">new</span> SharkStrategy();
+        sharkStrategy.setBreedTime(<span class="integer">5</span>);
+        sharkStrategy.setRnd(rnd);
+        sharkStrategy.setStarveTime(<span class="integer">4</span>);
+        sharkStrategy.setTorus(torus);
+
+        worldEngine = WorldEngine.createPopulatedWorld(
+                <span class="float">0.3</span>, <span class="comment">// initial rate of fish per cell</span>
+                <span class="float">0.1</span>, <span class="comment">// initial rate of shark per cell</span>
+                rnd, <span class="comment">// random base</span>
+                torus, <span class="comment">// the torus the creatures live in</span>
+                <span class="keyword">new</span> FishStrategy<span class="type">[]</span>{fishStrategy, sharkStrategy}
+        );
+    }</code></pre></section>
+<section id="_xml_basierte_konfiguration"><h2>XML-basierte Konfiguration</h2><div class="ulist"><ul><li><p>XML-Datei zur Konfiguration des ApplicationContext</p></li><li><p>Verdrahtung der <em>Beans</em> erfolgt über XML-Elemente</p></li><li><p>Vorteil: Klare Trennung von Implementierung und Verdrahtung</p></li><li><p>Nachteil: Medienbruch</p></li><li><p>Stammt aus den Anfängen der JEE</p></li><li><p>Sinnvoll in Kombination mit anderen XML-Konfigurationen</p></li></ul></div></section>
+<section id="_grundgerüst_für_xml_konfiguration"><h2>Grundgerüst für XML-Konfiguration</h2><div class="title">context.xml</div><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;beans</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.springframework.org/schema/beans</span><span class="delimiter">&quot;</span></span>
+       <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
+       <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.springframework.org/schema/beans</span>
+        <span class="content">http://www.springframework.org/schema/beans/spring-beans.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;/beans&gt;</span></code></pre></section>
+<section><section id="_beans_via_xml_definieren"><h2>Beans via XML definieren</h2><div class="paragraph"><p>Die Definition</p></div><div class="literalblock"><div class="content"><pre>&lt;bean id="firstCar" class="container.fragments.Car"/&gt;</pre></div></div><div class="paragraph"><p>entspicht einem Constructor-Aufruf:</p></div><div class="literalblock"><div class="content"><pre>Car firstCar = new Car();</pre></div></div><div class="paragraph"><p>Zugriff erfolgt über:</p></div><div class="literalblock"><div class="content"><pre>ctx.getBean("firstCar", Car.class)</pre></div></div></section><section id="_bean_aliases"><h2>Bean Aliases</h2><div class="paragraph"><p>Definition einer Bean mit 2 Aliasen:</p></div>
+<div class="literalblock"><div class="content"><pre>&lt;bean id="firstCar" name="bobbyCar,myCar"
+      class="container.fragments.Car"/&gt;</pre></div></div>
+<div class="paragraph"><p>damit gilt:</p></div>
+<div class="literalblock"><div class="content"><pre>ctx.getBean("firstCar") == ctx.getBean("bobbyCar")</pre></div></div></section><section id="_bean_mit_konstruktorparametern"><h2>Bean mit Konstruktorparametern:</h2><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;bean</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">engine</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">container.fragments.Engine</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;constructor-arg</span> <span class="attribute-name">index</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">diesel</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;constructor-arg</span> <span class="attribute-name">index</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">48</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/bean&gt;</span></code></pre>
+<div class="paragraph"><p>entspricht:</p></div>
+<div class="literalblock"><div class="content"><pre>Engine engine = new Engine("diesel", 48);</pre></div></div></section><section id="_bean_mit_properties"><h2>Bean mit Properties</h2><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;bean</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">realCar</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">container.fragments.Car</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">color</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">yellow</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">engine</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">engine</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/bean&gt;</span></code></pre>
+<div class="paragraph"><p>entspricht:</p></div>
+<div class="literalblock"><div class="content"><pre>Car realCar = new Car();
+realCar.setColor("yellow");
+realCar.setEngine(engine);</pre></div></div></section><section id="_collections_und_geschachtelte_beans"><h2>Collections und geschachtelte Beans</h2><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;bean</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">luxuryCar</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">container.fragments.Car</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">color</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">black</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">engine</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;bean</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">container.fragments.Engine</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;constructor-arg</span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">gas</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+            <span class="tag">&lt;constructor-arg</span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">120</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/bean&gt;</span>
+    <span class="tag">&lt;/property&gt;</span>
+    <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">features</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;list&gt;</span>
+            <span class="tag">&lt;ref</span> <span class="attribute-name">bean</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">aircon</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+            <span class="tag">&lt;bean</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">container.fragments.Feature</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;constructor-arg</span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">radio</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+            <span class="tag">&lt;/bean&gt;</span>
+        <span class="tag">&lt;/list&gt;</span>
+    <span class="tag">&lt;/property&gt;</span>
+<span class="tag">&lt;/bean&gt;</span></code></pre>
+<div class="paragraph"><p>entspricht:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">Car car = <span class="keyword">new</span> Car();
+car.setColor(<span class="string"><span class="delimiter">&quot;</span><span class="content">black</span><span class="delimiter">&quot;</span></span>);
+car.setEngine(<span class="keyword">new</span> Engine(<span class="string"><span class="delimiter">&quot;</span><span class="content">gas</span><span class="delimiter">&quot;</span></span>, <span class="integer">120</span>));
+car.setFeatures(<span class="predefined-type">Arrays</span>.asList(aircon, <span class="keyword">new</span> Feature(<span class="string"><span class="delimiter">&quot;</span><span class="content">radio</span><span class="delimiter">&quot;</span></span>)));</code></pre></section></section>
+<section><section id="_xml_config_elemente"><h2>XML-Config Elemente</h2><div class="paragraph heading"><p>Attribute des 'bean' Elements 1/2</p></div><div class="paragraph"><p>Siehe <a href="http://www.springframework.org/schema/beans/spring-beans.xsd" class="bare">http://www.springframework.org/schema/beans/spring-beans.xsd</a>.<br>
+Ist auch im Projekt <em>lesson-03-container</em> unter <em>src/test/xsd</em> abgelegt.</p></div><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:66.6667%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Attribut</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Name der Bean</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Aliases</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Bean-Klasse, bzw. Factory-Klasse</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">factory-method</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Methode zum Erzeugen einer Bean</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">factory-bean</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Name der Factory Bean</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">init-method</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Methode für Initialisierung</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">destroy-method</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Methoden für Aufräumarbeiten</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">scope</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">'singleton' (default) oder 'prototype'</p></td></tr></table></section><section id="_attribute_des_bean_elements_22"><h2>Attribute des 'bean' Elements 2/2</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:66.6667%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Attribut</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">lazy-init</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Initialisierung bei Bedarf</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">depends-on</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Explizite Abhängigkeit</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">autowire</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Abhängigkeiten automatisch verknüpfen</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">autowire-candidate</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Für Abhängigkeiten verwenden</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">primary</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Bevorzugte Alternative</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">parent</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Referenz auf Vorlage</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">abstract</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Ist Vorlage</p></td></tr></table>
+<div class="paragraph"><p><br></p></div>
+<div class="dlist"><dl><dt class="hdlist1">Wichtige Subelemente: </dt><dd><p>property, constructor-arg</p></dd></dl></div></section><section id="_das_property_element"><h2>Das 'property' Element</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:66.6667%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Attribut</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Property-Name</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">ref</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Bean-Name</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Wert</p></td></tr></table>
+<div class="paragraph"><p><br></p></div>
+<div class="dlist"><dl><dt class="hdlist1">Subelemente: </dt><dd><p>description, meta, bean, ref, idref, value,
+null, array, list, set, map, props</p></dd></dl></div></section><section id="_das_constructor_arg_element"><h2>Das 'constructor-arg' Element</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:66.6667%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Attribut</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Argumenttyp</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">index</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Argumentindex</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Argumentname</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">ref</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Beanname</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Wert</p></td></tr></table>
+<div class="paragraph"><p><br></p></div>
+<div class="dlist"><dl><dt class="hdlist1">Subelemente: </dt><dd><p>bean, ref, idref, value, null, array, list,
+set, map, props</p></dd></dl></div></section><section id="_die_elemente_array_list_und_set"><h2>Die Elemente 'array', 'list' und 'set'</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:66.6667%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Attribut</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">value-type</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Elementtyp</p></td></tr></table>
+<div class="paragraph"><p><br></p></div>
+<div class="dlist"><dl><dt class="hdlist1">Subelemente: </dt><dd><p>description, bean, ref, idref, value,
+null, array, list, set, map, props</p></dd></dl></div></section><section id="_die_elemente_map_entry_props_und_prop"><h2>Die Elemente 'map', 'entry', 'props' und 'prop'</h2><div class="paragraph"><p>Beispiel zum Setzen von Properties:</p></div>
+<pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;bean</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">specialCar</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">container.fragments.Car</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">properties</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;props&gt;</span>
+                <span class="tag">&lt;prop</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">length</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>4.12<span class="tag">&lt;/prop&gt;</span>
+                <span class="tag">&lt;prop</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">height</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>1.68<span class="tag">&lt;/prop&gt;</span>
+            <span class="tag">&lt;/props&gt;</span>
+    <span class="tag">&lt;/property&gt;</span>
+<span class="tag">&lt;/bean&gt;</span></code></pre>
+<div class="paragraph"><p>Maps werden analog dazu mit <code>&lt;map&gt;</code> und <code>&lt;entry&gt;</code> Elementen aufgebaut.<br>
+Siehe auch den <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-collection-elements">
+entsprechenden Abschnitt in der Spring Referenzdokumentation</a>.</p></div></section></section>
+<section id="_aufteilung_auf_mehere_konfigurationsdateien"><h2>Aufteilung auf mehere Konfigurationsdateien</h2><pre class="CodeRay listingblock"><code>&lt;beans&gt;
+    &lt;import resource="services.xml"/&gt;                   &lt;!-- gleiches Verzeichnis --&gt;
+    &lt;import resource="resources/messageSource.xml"/&gt;    &lt;!-- Unterverzeichnis resources --&gt;
+    &lt;import resource="/resources/themeSource.xml"/&gt;     &lt;!-- führender '/' wird ignoriert --&gt;
+
+    &lt;bean id="bean1" class="..."/&gt;
+    &lt;bean id="bean2" class="..."/&gt;
+&lt;/beans&gt;</code></pre></section>
+<section><section id="_applicationcontext"><h2>ApplicationContext</h2><div class="imageblock" style=""><img src="images/application-context-hierarchy.svg" alt="application context hierarchy" width="1213" height="499"></div></section><section id="_applicationcontext_erzeugen_und_verwenden"><h2>ApplicationContext erzeugen und verwenden</h2><pre class="CodeRay listingblock"><code class="java language-java">ApplicationContext ctx = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string"><span class="delimiter">&quot;</span><span class="content">car-context.xml</span><span class="delimiter">&quot;</span></span>);
+Car car = ctx.getBean(<span class="string"><span class="delimiter">&quot;</span><span class="content">firstCar</span><span class="delimiter">&quot;</span></span>, Car.class);</code></pre></section></section>
+<section id="_aufgabe_1_xml_konfiguration_anwenden"><h2>Aufgabe 1: XML-Konfiguration anwenden</h2><div class="paragraph"><p>Diese Aufgabe basiert auf der Methode <code>plumb</code> der Klasse <em>WatorAppNoSpring.java</em> im
+Verzeichnis <em>src/main/java/wator</em>.</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>Verwenden Sie <em>src/main/resources/context.xml</em> als Grundgerüst.</p></li><li><p>Bilden Sie die Methode <code>plumb</code> mit einer XML-Konfiguration nach.
+Sie benötigen dafür die Elemente <code>bean</code>, <code>property</code> und <code>constructor-arg</code>.</p></li><li><p>Kopieren Sie <em>WatorAppNoSpring</em> und ändern Sie die Methode <code>plumb</code>, so dass sie Ihre
+XML-Konfiguration verwendet. Sie benötigen dafür die Klasse <code>ClassPathXmlApplicationContext</code>.</p></li></ol></div>
+<div class="paragraph"><p>Details finden Sie in der <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html">
+Spring Framework Referenzdokumentation, Abschnitt 'The IoC Container'</a>.</p></div></section>
+<section><section id="_java_basierte_konfiguration"><h2>Java-basierte Konfiguration</h2><div class="ulist"><ul><li><p>Java-Klasse zur Konfiguration des ApplicationContext</p></li><li><p>XML-Konfiguration wird mit Java-Syntax nachgebildet</p></li><li><p>Kein Medienbruch (Refactoring, Compiler erkennt Fehler)</p></li><li><p>Weniger Boilerplate</p></li><li><p>Trennung von Implementierung und Verdrahtung erfordert Disziplin</p></li></ul></div></section><section id="_grundgerüst"><h2>Grundgerüst</h2><div class="title">CarConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">CarConfig</span> {
+
+    <span class="comment">// Bean mit Namen 'firstCar'</span>
+    <span class="annotation">@Bean</span>
+    Car firstCar() {
+        <span class="keyword">return</span> <span class="keyword">new</span> Car();
+    }
+
+    <span class="comment">// Bean mit Name 'firstCar2' und Aliasen 'bobbyCar' und 'car2'</span>
+    <span class="annotation">@Bean</span>({<span class="string"><span class="delimiter">&quot;</span><span class="content">firstCar2</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">bobbyCar</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">car2</span><span class="delimiter">&quot;</span></span>})
+    Car firstCar2() {
+        <span class="keyword">return</span> <span class="keyword">new</span> Car();
+    }
+}</code></pre></section><section id="_zusammenstöpseln_von_beans"><h2>Zusammenstöpseln von Beans</h2><div class="title">CarConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="comment">// Ist Singleton, d. h. gibt es nur einmal!</span>
+<span class="annotation">@Bean</span>
+Engine engine() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Engine(<span class="string"><span class="delimiter">&quot;</span><span class="content">diesel</span><span class="delimiter">&quot;</span></span>, <span class="integer">48</span>);
+}
+
+<span class="annotation">@Bean</span>
+Car realCar() {
+    Car car = <span class="keyword">new</span> Car();
+    car.setColor(<span class="string"><span class="delimiter">&quot;</span><span class="content">yellow</span><span class="delimiter">&quot;</span></span>);
+    car.setEngine(engine()); <span class="comment">// Verdrahtung über Methode (Cache!)</span>
+    <span class="keyword">return</span> car;
+}
+
+<span class="annotation">@Bean</span>
+Car realCar2(Engine engine) { <span class="comment">// Verdrahtung über Parameter</span>
+    Car car = <span class="keyword">new</span> Car();
+    car.setEngine(engine);
+    <span class="keyword">return</span> car;
+}</code></pre>
+<div class="paragraph"><p>Bgzl. Auflösung von Mehrdeutigkeiten siehe
+<a href="https://www.logicbig.com/tutorials/spring-framework/spring-core/javaconfig-methods-inter-dependency.html">
+Dependency injection in @Bean method parameters</a>.</p></div></section><section id="_collections_und_nested_beans_mit_java_mitteln"><h2>Collections und nested Beans mit Java-Mitteln</h2><div class="title">CarConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+Feature aircon() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Feature(<span class="string"><span class="delimiter">&quot;</span><span class="content">air conditioning</span><span class="delimiter">&quot;</span></span>);
+}
+
+<span class="annotation">@Bean</span>
+Car luxuryCar() {
+    Car car = <span class="keyword">new</span> Car();
+    car.setColor(<span class="string"><span class="delimiter">&quot;</span><span class="content">black</span><span class="delimiter">&quot;</span></span>);
+    car.setEngine(<span class="keyword">new</span> Engine(<span class="string"><span class="delimiter">&quot;</span><span class="content">gas</span><span class="delimiter">&quot;</span></span>, <span class="integer">120</span>));
+    car.setFeatures(<span class="predefined-type">List</span>.of(aircon(), <span class="keyword">new</span> Feature(<span class="string"><span class="delimiter">&quot;</span><span class="content">radio</span><span class="delimiter">&quot;</span></span>)));
+    <span class="keyword">return</span> car;
+}</code></pre></section></section>
+<section id="_annotationen_für_java_config_ohne_autowiring"><h2>Annotationen für Java-Config (ohne Autowiring)</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:66.6667%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Annotation</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Configuration</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Markiert eine Klasse als Konfigurationsklasse</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Bean</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Makiert eine Methode als Bean-Factory</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Lazy</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Bean wird nur bei Bedarf initialisiert</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Nullable (bei Bean-Methode)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Bean darf <code>null</code> sein</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Scope</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Legt den Scope einer Bean fest</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Import</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Abhängigkeiten aus anderer Config-Klasse importieren</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@ImportResource</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Abhängigkeiten aus XML-Datei importieren</p></td></tr></table></section>
+<section id="_java_config_ohne_autowiring"><h2>Java-Config (ohne Autowiring)</h2><div class="paragraph heading"><p>ApplicationContext erzeugen und verwenden</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">ApplicationContext ctx = <span class="keyword">new</span> AnnotationConfigApplicationContext(CarConfig.class);
+Car car = ctx.getBean(<span class="string"><span class="delimiter">&quot;</span><span class="content">firstCar</span><span class="delimiter">&quot;</span></span>, Car.class);</code></pre></section>
+<section id="_aufgabe_2_wa_tor_mit_java_config_zusammenstöpseln"><h2>Aufgabe 2: Wa-Tor mit Java-Config zusammenstöpseln</h2><div class="paragraph"><p>Auch diese Aufgabe basiert auf der Methode <code>plumb</code> der Klasse <em>WatorAppNoSpring.java</em> im
+Verzeichnis <em>src/main/java/wator</em>. Sie können auch Ihre vorherige Lösung als Gundlage verwenden.</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>Erstellen Sie die Klasse <code>wator.config.WatorConfig</code></p></li><li><p>Bauen Sie die Methode <code>plumb</code> als Java-Config nach</p></li><li><p>Fertigen Sie eine weitere Kopie von <code>WatorAppNoSpring</code> und
+verwenden Sie diesmal <code>AnnotationConfigApplicationContext</code> in der <em>plumb</em> Methode.</p></li></ol></div></section>
+<section><section id="_autowiring"><h2>Autowiring</h2><div class="paragraph heading"><p>Motivation</p></div><div class="ulist"><ul><li><p>Verdrahten von Beans erfordert viel Boilerplate (unübersichtlich, pflegeintensiv)</p></li><li><p>Oft ist Verdrahtung eindeutig</p></li><li><p>Per Reflection machbar</p></li></ul></div></section><section id="_die_anfänge_von_autowiring"><h2>Die Anfänge von Autowiring</h2><div class="ulist"><ul><li><p><code>&lt;bean autowire="&#8230;&#8203;"&gt;</code> &#8594; Setzt Autowiring für diese Bean auf &#8230;&#8203;</p><div class="ulist"><ul><li><p><code>no</code> &#8594; deaktivert</p></li><li><p><code>byName</code> &#8594; Zuordnung über Property-Name</p></li><li><p><code>byType</code> &#8594; Zuordnung über Property-Typ</p></li><li><p><code>constructor</code>&#8594; Zuordnung über Konstruktorargumente (Typ)</p></li></ul></div></li><li><p><code>&lt;bean autowire-candidate="false"&gt;</code> &#8594; Bean wird nicht für Autowiring verwendet</p></li><li><p><code>&lt;beans default-autowire-candidates="*Repository, *Service"&gt;</code> &#8594;
+Alle Beans mit dem entsprechenden Namensmuster werden für Autowiring verwendet</p></li></ul></div></section><section id="_annotationen_für_autowiring"><h2>Annotationen für Autowiring</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:66.6667%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Annotation</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Autowired</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Befüllt Property über Autowiring</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Nullable (bei Abhängigkeit)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Abhängigkeit darf <code>null</code> sein</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Required (deprecated)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Abhängigkeit notwendig (nur bei Setter sinnvoll)</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Primary</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Legt die bevorzugte Bean fest</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Qualifier</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Makiert eine Bean oder eine Abhängigkeit</p></td></tr></table></section><section id="_aktivierung_von_autowiring"><h2>Aktivierung von Autowiring</h2><div class="paragraph"><p>Bei Java-Config standardmäßig aktiviert</p></div>
+<div class="paragraph"><p>Bei XML-Config notwendig:</p></div>
+<pre class="CodeRay listingblock"><code>&lt;context:annotation-config/&gt;</code></pre></section><section id="_field_autowiring"><h2>Field Autowiring</h2><div class="paragraph"><p>Es gibt 3 Arten von Autowiring. Am häufigsten wird diese Variante verwendet:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Autowired</span>
+<span class="directive">private</span> Engine engine;
+<span class="annotation">@Autowired</span>
+<span class="directive">private</span> <span class="predefined-type">List</span>&lt;Feature&gt; features;</code></pre></section><section id="_setter_autowiring"><h2>Setter Autowiring</h2><div class="paragraph"><p>Eher selten:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Autowired</span>
+<span class="directive">public</span> <span class="type">void</span> setEngine(Engine engine) {
+    <span class="local-variable">this</span>.engine = engine;
+}
+
+<span class="annotation">@Autowired</span>
+<span class="directive">public</span> <span class="type">void</span> setFeatures(<span class="predefined-type">List</span>&lt;Feature&gt; features) {
+    <span class="local-variable">this</span>.features = features;
+}</code></pre></section><section id="_konstruktor_autowiring"><h2>Konstruktor Autowiring</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">private</span> <span class="directive">final</span> Engine engine;
+<span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;Feature&gt; features;
+
+<span class="annotation">@Autowired</span>
+<span class="directive">public</span> CarConstructorWiring(Engine engine, <span class="predefined-type">List</span>&lt;Feature&gt; features) {
+    <span class="local-variable">this</span>.engine = engine;
+    <span class="local-variable">this</span>.features = features;
+}</code></pre>
+<div class="paragraph"><p>Nur sinnvoll in Kombination mit annotationsbasierter Konfiguration.<br>
+Für Muss-Parameter in Kombination mit <code>final</code> empfohlen.</p></div></section><section id="_verwendung_von_primary"><h2>Verwendung von @Primary</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="annotation">@Primary</span>
+Engine gasEngine() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Engine(<span class="string"><span class="delimiter">&quot;</span><span class="content">gas</span><span class="delimiter">&quot;</span></span>, <span class="integer">68</span>);
+}
+
+<span class="annotation">@Bean</span>
+Engine dieselEngine() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Engine(<span class="string"><span class="delimiter">&quot;</span><span class="content">diesel</span><span class="delimiter">&quot;</span></span>, <span class="integer">72</span>);
+}
+
+<span class="annotation">@Bean</span>
+Car car(Engine engine) {
+   var car = <span class="keyword">new</span> Car();
+   car.setEngine(engine);
+   <span class="keyword">return</span> car;
+}</code></pre>
+<div class="paragraph"><p>Wird häufig für Tests verwendet.</p></div></section><section id="_verwendung_von_qualifier"><h2>Verwendung von @Qualifier</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="annotation">@Qualifier</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">gas</span><span class="delimiter">&quot;</span></span>)
+Engine gasEngine() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Engine(<span class="string"><span class="delimiter">&quot;</span><span class="content">gas</span><span class="delimiter">&quot;</span></span>, <span class="integer">68</span>);
+}
+
+<span class="annotation">@Bean</span>
+<span class="annotation">@Qualifier</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">diesel</span><span class="delimiter">&quot;</span></span>)
+Engine dieselEngine() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Engine(<span class="string"><span class="delimiter">&quot;</span><span class="content">diesel</span><span class="delimiter">&quot;</span></span>, <span class="integer">72</span>);
+}
+
+<span class="annotation">@Bean</span>
+Car car(<span class="annotation">@Qualifier</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">gas</span><span class="delimiter">&quot;</span></span>) Engine engine) {
+    var car = <span class="keyword">new</span> Car();
+    car.setEngine(engine);
+    <span class="keyword">return</span> car;
+}</code></pre>
+<div class="paragraph"><p><code>@Qualifier</code> kann auch in Kombination mit <code>@Autowire</code> verwendet werden.<br>
+Der Bean-Name ist immer auch ein Qualifier.</p></div></section><section id="_verwendung_von_nullable"><h2>Verwendung von @Nullable</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+Car car(<span class="annotation">@Nullable</span> Engine engine) {
+    var car = <span class="keyword">new</span> Car();
+    car.setEngine(engine);
+    <span class="keyword">return</span> car;
+}</code></pre>
+<div class="paragraph"><p>Ohne <code>@Nullable</code> wäre die Konfiguration fehlerhaft, solange es keine <code>Engine</code> gibt.<br>
+Ein <code>@Autowired(required=false)</code> hat die gleiche Wirkung.</p></div></section></section>
+<section id="_aufgabe_3_konfiguration_mit_autowiring_vereinfachen"><h2>Aufgabe 3: Konfiguration mit Autowiring vereinfachen</h2><div class="olist arabic"><ol class="arabic"><li><p>Nutzen Sie Autowiring, um die <code>Random</code> und <code>Torus</code> Beans bei den beiden Strategies zu setzen.</p></li><li><p>Wann und durch wen wird das Autowiring durchgeführt? Verwenden Sie Setter-Autowiring und setzen
+Sie in dem Setter einen Breakpoint, um das herauszufinden.</p></li><li><p>Optional: Wie müssten Sie die <code>WorldEngine</code> ändern, um Autowiring verwenden zu können?</p></li></ol></div></section>
+<section><section id="_container_erweiterungspunkte"><h2>Container Erweiterungspunkte</h2><div class="paragraph"><p>Das Verhalten des Containers kann durch spezielle Beans beeinflusst werden, die
+eines der folgenden Interfaces implementieren:</p></div><div class="paragraph"><p><br></p></div><div class="dlist"><dl><dt class="hdlist1">BeanPostProcessor</dt><dd><p>Nachbearbeitung aller Beans im Container, z. B. Auswertung von Annotationen</p></dd><dt class="hdlist1">BeanFactoryPostProcessor </dt><dd><p>Nachbearbeitung des Containers, bevor Beans erzeugt werden</p></dd><dt class="hdlist1">FactoryBean</dt><dd><p>Implementierung einer eigenen Factory für eine Bean (nicht mit <strong>ObjectFactory</strong> verwechseln!)</p></dd></dl></div><div class="paragraph"><p><br></p></div><div class="paragraph"><p>Diese Interfaces werden vor allem Spring-intern verwendet, z. B. für den
+<code>AutowiredAnnotationBeanPostProcessor</code>.</p></div></section><section id="_beanpostprocessor"><h2>BeanPostProcessor</h2><div class="paragraph"><p>Implementierung</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">LoggingBeanPostProcessor</span> <span class="directive">implements</span> BeanPostProcessor {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">Object</span> postProcessBeforeInitialization(<span class="predefined-type">Object</span> bean, <span class="predefined-type">String</span> beanName) <span class="directive">throws</span> BeansException {
+        <span class="comment">// Hier könnte man ein Stellvertreterobjekt zurückgeben, z. B. Proxy- oder</span>
+        <span class="comment">// Decorator</span>
+        <span class="keyword">return</span> bean;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">Object</span> postProcessAfterInitialization(<span class="predefined-type">Object</span> bean, <span class="predefined-type">String</span> beanName) <span class="directive">throws</span> BeansException {
+        <span class="predefined-type">System</span>.out.printf(<span class="string"><span class="delimiter">&quot;</span><span class="content">after-init %12s: %s%n</span><span class="delimiter">&quot;</span></span>, beanName, bean);
+        <span class="keyword">return</span> bean;
+    }
+}</code></pre>
+<div class="paragraph"><p>Konfiguration</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">static</span> BeanPostProcessor postProcessor() {
+    <span class="keyword">return</span> <span class="keyword">new</span> LoggingBeanPostProcessor();
+}</code></pre></section><section id="_beanfactorypostprocessor"><h2>BeanFactoryPostProcessor</h2><div class="paragraph"><p>Implementierung</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">LoggingBeanFactoryPostProcessor</span> <span class="directive">implements</span> BeanFactoryPostProcessor {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) <span class="directive">throws</span> BeansException {
+        <span class="comment">// Hier könnte man den Container ändern, bevor die ersten Beans erzeugt werden.</span>
+        <span class="predefined-type">System</span>.out.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">bean-factory: </span><span class="delimiter">&quot;</span></span> + <span class="predefined-type">Arrays</span>.toString(beanFactory.getBeanDefinitionNames()));
+    }
+}</code></pre>
+<div class="paragraph"><p>Konfiguration</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">static</span> BeanFactoryPostProcessor factoryPostProcessor() {
+    <span class="keyword">return</span> <span class="keyword">new</span> LoggingBeanFactoryPostProcessor();
+}</code></pre></section><section id="_factorybean"><h2>FactoryBean</h2><div class="paragraph"><p>Implementierung</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">CarFactoryBean</span> <span class="directive">implements</span> FactoryBean&lt;Car&gt; {
+
+    <span class="directive">final</span> Car car = <span class="keyword">new</span> Car();
+    {
+        car.setEngine(<span class="keyword">new</span> Engine(<span class="string"><span class="delimiter">&quot;</span><span class="content">electric</span><span class="delimiter">&quot;</span></span>, <span class="integer">50</span>));
+        car.setColor(<span class="string"><span class="delimiter">&quot;</span><span class="content">white</span><span class="delimiter">&quot;</span></span>);
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> Car getObject() <span class="directive">throws</span> <span class="exception">Exception</span> {
+        <span class="keyword">return</span> car;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">Class</span>&lt;?&gt; getObjectType() {
+        <span class="keyword">return</span> Car.class;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">boolean</span> isSingleton() {
+        <span class="keyword">return</span> <span class="predefined-constant">true</span>; <span class="comment">// Default-Implementierung</span>
+    }
+}</code></pre></section><section id="_factorybean_2"><h2>FactoryBean</h2><div class="paragraph"><p>Konfiguration</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+FactoryBean&lt;Car&gt; electricCar() {
+    <span class="keyword">return</span> <span class="keyword">new</span> CarFactoryBean();
+}</code></pre></section></section>
+<section id="_aufgabe_4_konfiguration_mit_beanpostprocessor_verfolgen"><h2>Aufgabe 4: Konfiguration mit BeanPostProcessor verfolgen</h2><div class="olist arabic"><ol class="arabic"><li><p>Implementieren Sie einen <code>BeanPostProcessor</code>, der zu jeder Bean den Namen und die
+String-Repräsenation der Bean logged.</p></li><li><p>Binden Sie diesen <code>BeanPostProcessor</code> in die Wa-Tor Applikation ein.</p></li><li><p>Welchen Unterschied macht es, wenn Sie die Bean-Methode dazu mit <code>static</code> deklarieren?</p></li><li><p>Optional: Implementieren sie eine <code>FactoryBean</code>, welche <em>Random</em> bereitstellt.</p></li></ol></div></section>
+<section id="_annotationsbasierte_konfiguration" data-state="no-title-footer"><h2>Annotationsbasierte Konfiguration</h2><div class="paragraph center"><p>Was ist das?</p></div></section>
+<section><section id="_annotationsbasierte_konfiguration_2"><h2>Annotationsbasierte Konfiguration</h2><div class="paragraph heading"><p>Aktivieren der annotationsbasierten Konfiguration</p></div><div class="title">XML-Config</div><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;beans</span> <span class="attribute-name">xmlns</span>=<span class="attribute-value">...</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;context:component-scan</span> <span class="attribute-name">base-package</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">org.example</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    ...
+<span class="tag">&lt;/beans&gt;</span></code></pre><div class="title">Java-Config</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="annotation">@ComponentScan</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.example</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SomeConfig</span> {
+    <span class="comment">// ...</span>
+}</code></pre><div class="paragraph"><p>Mit Component-Scanning werden zwangsläufig Annotationen ausgewertet.<br>
+Ein <code>&lt;context:annotation-config/&gt;</code> ist damit überflüssig.</p></div></section><section id="_annotationen_für_annotationsbasierten_konfiguration"><h2>Annotationen für annotationsbasierten Konfiguration</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:66.6667%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Annotation</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@ComponentScan</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Festlegung der Packages, die für annotationsbasierte Konfiguration herangezogen werden</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Component (@Service, @Repository, @Controller)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Markiert eine Klasse als Bean</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Value</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Wertangabe mit den Features der XML-Config</p></td></tr></table></section><section id="_meta_annotationen_und_zusammengesetze_annotationen"><h2>Meta-Annotationen und Zusammengesetze Annotationen</h2><div class="title">org.springframework.stereotype.Service</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Target</span>({<span class="predefined-type">ElementType</span>.TYPE})
+<span class="annotation">@Retention</span>(<span class="predefined-type">RetentionPolicy</span>.RUNTIME)
+<span class="annotation">@Documented</span>
+<span class="annotation">@Component</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="directive">public</span> <span class="annotation">@interface</span> Service {
+
+    <span class="comment">/**
+     * The value may indicate a suggestion for a logical component name,
+     * to be turned into a Spring bean in case of an autodetected component.
+     * @return the suggested component name, if any (or empty String otherwise)
+     */</span>
+    <span class="annotation">@AliasFor</span>(annotation = <span class="predefined-type">Component</span>.class)
+    <span class="predefined-type">String</span> value() <span class="keyword">default</span> <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
+
+}</code></pre>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td><strong>@Service</strong>, <strong>@Repository</strong> und <strong>@Controller</strong> sind Annotationen, die selbst wiederum mit <strong>@Component</strong> annotiert sind.</td></tr></table></div>
+<div class="paragraph"><p>Zusammengesetzte Annotationen sind Meta-Annotation, die mit mehreren Annotationen annotiert sind.</p></div></section><section id="_varianten_zur_angabe_der_packages"><h2>Varianten zur Angabe der Packages</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@ComponentScan</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.example1</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@ComponentScan</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.example2</span><span class="delimiter">&quot;</span></span>) <span class="comment">// ComponentScan ist Repeatable</span>
+
+<span class="annotation">@ComponentScan</span>({<span class="string"><span class="delimiter">&quot;</span><span class="content">org.example1</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">org.example2</span><span class="delimiter">&quot;</span></span>})
+<span class="annotation">@ComponentScan</span>(value = {<span class="string"><span class="delimiter">&quot;</span><span class="content">org.example1</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">org.example2</span><span class="delimiter">&quot;</span></span>})
+<span class="annotation">@ComponentScan</span>(basePackages = {<span class="string"><span class="delimiter">&quot;</span><span class="content">org.example1</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">org.example2</span><span class="delimiter">&quot;</span></span>}) <span class="comment">// sind alle äquivalent</span>
+
+<span class="annotation">@ComponentScan</span>(basePackageClasses = BigDieselEngine.class) <span class="comment">// robust gegen Refactorings</span></code></pre></section><section id="_filter"><h2>Filter</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@ComponentScan</span>(basePackageClasses = BigDieselEngine.class,
+               excludeFilters = <span class="annotation">@Filter</span>(type=FilterType.ANNOTATION, <span class="comment">// default</span>
+                                        classes = Service.class))
+
+<span class="annotation">@ComponentScan</span>(basePackageClasses = BigDieselEngine.class,
+               excludeFilters = <span class="annotation">@Filter</span>(type = FilterType.ASSIGNABLE_TYPE,
+                                        classes = Umbrella.class))
+
+<span class="annotation">@ComponentScan</span>(basePackageClasses = BigDieselEngine.class,
+                   excludeFilters = <span class="annotation">@Filter</span>(type=FilterType.REGEX,
+                                            pattern=<span class="string"><span class="delimiter">&quot;</span><span class="content">.*Umbrella</span><span class="delimiter">&quot;</span></span>))
+
+<span class="annotation">@ComponentScan</span>(basePackageClasses = BigDieselEngine.class,
+               excludeFilters = <span class="annotation">@Filter</span>(type=FilterType.ASPECTJ, <span class="comment">// erfodert spring-aspects</span>
+                                        pattern=<span class="string"><span class="delimiter">&quot;</span><span class="content">*..Umbrella</span><span class="delimiter">&quot;</span></span>))</code></pre>
+<div class="paragraph"><p>Über <code>FilterType.CUSTOM</code> kann man auch eine eigene Filter-Implementierung angeben.</p></div></section><section id="_weitere_konfigurationsmöglichkeiten"><h2>Weitere Konfigurationsmöglichkeiten</h2><div class="paragraph"><p>Die ComponentScan Annotation bietet noch weitere Konfiurationsmöglichkeiten:</p></div>
+<div class="ulist"><ul><li><p>Include-/Exclude-Filter</p></li><li><p>Verwendung der Default-Filter (@Component, @Service, &#8230;&#8203;) an-/abschalten</p></li><li><p>Generator für Bean-Namen</p></li><li><p>Lazy-Intialisierung der gefundenen Beans</p></li><li><p>Scope-Resolver</p></li><li><p>Proxies für Beans erzeugen</p></li></ul></div>
+<div class="paragraph"><p>Für Details siehe <a href="https://docs.spring.io/spring/docs/5.3.6/javadoc-api/org/springframework/context/annotation/ComponentScan.html">Javadocs</a>.</p></div></section></section>
+<section id="_aufgabe_5_annotationsbasierte_konfiguration"><h2>Aufgabe 5: Annotationsbasierte Konfiguration</h2><div class="olist arabic"><ol class="arabic"><li><p>Löschen Sie in Ihrer Java-Config die beiden Bean-Methoden, welche die Beans für die <code>FishStrategy</code> und die <code>SharkStrategy</code>
+erzeugen. Verwenden Sie stattdessen die Annotationen <code>@ComponentScan</code> und <code>@Service</code>.</p></li><li><p>Stellen Sie auch die <code>WorldEngine</code> auf annotationsbasierte Konfiguration um. Dafür sind mehrere Anpassungen notwendig:</p><div class="olist loweralpha"><ol class="loweralpha" type="a"><li><p>Führen Sie Instanzvariablen für die Konfigurationswerte <code>fishRate</code> und <code>sharkRate</code> ein</p></li><li><p>Nutzen Sie Konstruktor-Autowiring für alle Abhängigkeiten</p></li><li><p>Initialisieren sie die <code>WorldEngine</code> über <code>@PostConstruct</code> oder das <code>InitializingBean</code> Interface.</p></li></ol></div></li></ol></div></section>
+<section id="_jee_annotationen"><h2>JEE-Annotationen</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:33.3333%"><col style="width:33.3334%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">JSR-330</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Spring</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">JSR-250<br>
+  <span class="small">(bis Java 10 im JDK enthalten)</span></p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Inject</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">@Autowired</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">@Resource</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Named</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">@Component<br>
+  <span class="small">Meta-Annotationen:<br>
+  @Service, @Respository oder @Controller</span></p></td><td class="tableblock halign-left valign-top"><p class="tableblock">@ManagedBean<br>
+<span class="small">(Kein Bestandteil des JDK)</span></p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Singleton<br>
+  <span class="small">(Laut JSR-330 ist Default-Scope <em>prototype</em><br>
+  bei Spring dagegen: <em>singleton</em>)</span></p></td><td class="tableblock halign-left valign-top"><p class="tableblock">@Scope("singleton")</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Named<br>
+@Qualifier <span class="small">(nur für Meta-Annotation)</span></p></td><td class="tableblock halign-left valign-top"><p class="tableblock">@Qualifier</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Provider&lt;T&gt;<br>
+  <span class="small">(mit Methode <code>T get()</code>)</span></p></td><td class="tableblock halign-left valign-top"><p class="tableblock">ObjectFactory&lt;T&gt;<br>
+  <span class="small">(mit Methode <code>T getObject()</code>)</span></p></td><td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td></tr></table>
+<aside class="notes"><div class="ulist"><ul><li><p>Gemäß JSR-330 ist der Default-Scope für Beans immer <em>prototype</em>. Bei Spring ist der Default-Scope aber immer <em>singleton</em>,
+deshalb ist die <code>@Singleton</code> Annotation bei Spring nicht notwendig.</p></li><li><p>JSR-330 kennt auch eine <code>@Qualifier</code> Annotation, diese kann aber nur für Meta-Annotationen verwendet werden</p></li><li><p><code>Provider</code> und <code>ObjectFactory</code> sind keine Annotationen, sondern Factory-Interfaces</p></li><li><p>Seit Java 11 ist der JSR-250 und damit die Annotationen <code>@Resource</code>, <code>@PostConstruct</code> und <code>@PreDestory</code> kein Bestandteil
+des JDK mehr. <code>@ManagedBean</code> war ohnehin noch nie Bestandteil des JDK.</p></li></ul></div></aside></section>
+<section id="_aufgabe_6_optional_jsr_330_annotationen"><h2>Aufgabe 6 (optional): JSR-330 Annotationen</h2><div class="paragraph"><p>Stellen Sie die Wa-Tor Anwendung auf JSR-330 Annotationen um.
+Dafür sind folgende Anpassungen notwendig:</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>Maven-Abhängigkeit zu <code>javax.inject:javax.inject:1</code> oder <code>org.glassfish.hk2.external:jakarta.inject:2.6.1</code> ergänzen</p></li><li><p>Modul-Abhängigkeit für <code>javax.inject</code> bzw. <code>jakarta.inject</code> in <code>module-info.java</code> eintragen</p></li><li><p>Annotationen <code>@Autowired</code> und <code>@Component</code> durch <code>@Inject</code> und <code>@Named</code> ersetzen</p></li></ol></div></section>
+<section><section id="_asynchrone_ausführung_und_hintergrundprozesse"><h2>Asynchrone Ausführung und Hintergrundprozesse</h2><div class="ulist"><ul><li><p>Spring bietet die Abstraktionen <code>TaskExecutor</code> und <code>TaskScheduler</code></p></li><li><p><code>TaskExecutor</code> ist identisch zu <code>java.util.concurrent.Executor</code></p></li><li><p>Für beide Interfaces liegen diverse Implementierungen vor</p></li><li><p><code>@EnableAsync</code> und <code>@EnableScheduling</code> aktivieren eine Default-Konfiguration für asynchrone Ausführung
+bzw. Hintergrundprozesse.</p></li><li><p>Mit <code>@Async</code> annotierten Bean-Methode werden asynchron ausgeführt</p></li><li><p>Mit <code>@Scheduled</code> annotierte Beans werden in regelmäßig im Hintegrund ausgeführt</p></li></ul></div><div class="paragraph"><p>Weitere Hinweise dazu finden Sie in der
+<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#scheduling">
+Spring Framework Referenzdokumentation, Abschnitt 'Task Execution and Scheduling'</a>.</p></div></section><section id="_enablescheduling"><h2>@EnableScheduling</h2><div class="title">org.springframework.scheduling.annotation.EnableScheduling</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Target</span>(<span class="predefined-type">ElementType</span>.TYPE)
+<span class="annotation">@Retention</span>(<span class="predefined-type">RetentionPolicy</span>.RUNTIME)
+<span class="annotation">@Import</span>(SchedulingConfiguration.class)
+<span class="annotation">@Documented</span>
+<span class="directive">public</span> <span class="annotation">@interface</span> EnableScheduling {
+
+}</code></pre>
+<div class="ulist"><ul><li><p>Die <strong>@Enable&#8230;&#8203;</strong> Annotationen aktivieren diverse Spring-Features</p></li><li><p>Üblicherweise werden <code>@Configuration</code> Klassen damit annotiert,<br>
+möglich sind aber beliebige Bean-Klassen.</p></li><li><p>Es handelt sich dabei immer um Meta-Annotationen, die mit
+<code>@Import</code> eine weitere Konfiguration einbinden.</p></li></ul></div></section><section id="_schedulingconfiguration"><h2>SchedulingConfiguration</h2><div class="title">org.springframework.scheduling.annotation.SchedulingConfiguration</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Role</span>(BeanDefinition.ROLE_INFRASTRUCTURE)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SchedulingConfiguration</span> {
+
+    <span class="annotation">@Bean</span>(name = TaskManagementConfigUtils.SCHEDULED_ANNOTATION_PROCESSOR_BEAN_NAME)
+    <span class="annotation">@Role</span>(BeanDefinition.ROLE_INFRASTRUCTURE)
+    <span class="directive">public</span> ScheduledAnnotationBeanPostProcessor scheduledAnnotationProcessor() {
+        <span class="keyword">return</span> <span class="keyword">new</span> ScheduledAnnotationBeanPostProcessor();
+    }
+
+}</code></pre>
+<div class="paragraph"><p>Der <code>ScheduledAnnotationBeanPostProcessor</code> ist ein <code>BeanPostProcessor</code>, der die
+<code>@Scheduled</code> Annotationen verarbeitet und die entsprechende Methode bei
+einem <code>TaskScheduler</code> registriert.</p></div></section><section id="_scheduled"><h2>@Scheduled</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Scheduled(fixedDelay=5000)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Nach 5 Sek. erneut ausführen</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Scheduled(fixedRate=5000)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Alle 5 Sek. ausführen</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Scheduled(initialDelay=1000, fixedRate=5000)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Nach initialer Pause von 1 Sek. alle 5 Sek. ausführen</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Scheduled(cron="*/5 * * * * MON-FRI")</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">An Wochentagen alle 5 Sek. ausführen</p></td></tr></table>
+<div class="paragraph"><p><br></p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Scheduled</span>(fixedDelay=<span class="integer">5000</span>)
+<span class="directive">public</span> <span class="type">void</span> doSomething() {
+    <span class="comment">// something that should execute periodically</span>
+}</code></pre>
+<div class="paragraph"><p><br></p></div>
+<div class="paragraph"><p>Über <code>fixedDelayString</code>, <code>fixedRateString</code> und <code>initialDelayString</code> können die Werte auch als String
+angegeben werden. Das ist notwendig, um die Werte von außen konfigurierbar zu machen.</p></div></section></section>
+<section id="_aufgabe_7_optional_scheduling_verwenden"><h2>Aufgabe 7 (optional): Scheduling verwenden</h2><div class="olist arabic"><ol class="arabic"><li><p>Implementieren Sie eine <em>Timer</em> Bean, welche jede Sekunde
+<code>worldEngine.tick()</code> und <code>torus.dump(count)</code> aufruft.</p></li><li><p>Binden Sie die Bean in die Wa-Tor Application ein und aktivieren Sie das <em>Scheduling</em>.</p></li><li><p>Löschen Sie den Aufruf der <code>run()</code> Methode aus Ihrer <em>main</em>-Klasse.</p></li><li><p>Sehen Sie sich die Logausgaben ihres <em>BeanPostProcessor</em> an.<br>
+Was hat sich im <em>ApplicationContext</em> geändert?</p></li><li><p>Analysieren Sie die <em>Timer</em> Bean mit dem Debugger.<br>
+Wer ruft die Methode mit der <code>@Scheduled</code> Annotation auf?</p></li></ol></div></section>
+<section><section id="_wa_tor_mit_java_fx_oberfläche"><h2>Wa-Tor mit Java FX Oberfläche</h2><div class="paragraph center"><p><span class="image"><img src="images/WatorFx.png" alt="WatorFx" height="800"></span></p></div></section><section id="_java_fx"><h2>Java FX</h2><div class="ulist"><ul><li><p>UI-Technologie für Desktop-Anwendungen</p></li><li><p>Als Nachfolger von Swing gedacht</p></li><li><p>Seit Java 11 kein Bestandteil des JDK mehr</p></li><li><p>Über Maven-Central (z. B. <code>org.openjfx:javafx-controls:12</code>) verfügbar</p></li><li><p>Erfordert Java 9 Modulsystem</p></li><li><p>Wird auf <a href="https://openjfx.io/" class="bare">https://openjfx.io/</a> gepflegt</p></li><li><p>Ohne Modulsystem ist das <a href="https://gluonhq.com/products/javafx">JavaFX SDK</a> notwendig
+und die Anwendung muss mit<br>
+<code>--module-path &lt;path-to-sdk&gt;/lib --add-modules=javafx.controls</code><br>
+aufgerufen werden.</p></li></ul></div></section><section id="_nachträgliches_autowiring_für_existierende_objekte"><h2>Nachträgliches Autowiring für existierende Objekte</h2><div class="ulist"><ul><li><p>Manchmal hat man auf die Erzeugung eines Objekts keinen Einfluss<br>
+(z. B. bei einer Java FX Applikationsklasse)</p></li><li><p>Dennoch ist Autowiring möglich:</p></li></ul></div>
+<pre class="CodeRay listingblock"><code class="java language-java">ctx.getAutowireCapableBeanFactory().autowireBean(object);</code></pre>
+<div class="paragraph"><p><br></p></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Man kann auch eine Configuration-Klasse mit einer main-Methode ausstatten.<br>
+Das ist für Mini-Programme nützlich, die nur aus einer Klasse bestehen.</td></tr></table></div></section></section>
+<section id="_aufgabe_8_optional_fx_torus_einbinden"><h2>Aufgabe 8 (optional): Fx-Torus einbinden</h2><div class="paragraph"><p>Die Klasse <code>WritableImageTorus</code> ist eine Torus-Implementierung,
+bei der jede Zelle einem Pixel auf einer Bitmap entspricht.
+Fische erscheinen als blaue Pixel und Haie als gelbe Pixel.
+Die Applikation <code>WatorAppFx</code> zeigt diesen Torus an.</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>Prüfen Sie, ob die Anwendung <strong>WatorAppFx</strong> lauffähig ist</p></li><li><p>Erstellen Sie eine Kopie Ihrer Java-Config, die statt dem <code>SimpleTorus</code>
+einen <code>WritableImageTorus</code> mit Auflösung 800 x 600 erstellt.</p></li><li><p>Ersetzten Sie die Methode <code>plumb</code> durch Verwendung eines
+entsprechenden <em>ApplicationContext</em>.</p></li><li><p>Die <em>Timer</em> Bean aus der vorherigen Ausgabe funktioniert nicht
+für den <code>WritableImageTorus</code>. Ergänzen Sie deshalb die <code>@ComponentScan</code>
+Annotation um einen Exclude-Filter, der die <em>Timer</em> Bean ausschließt.</p></li><li><p>Nutzen Sie Autowiring, um <code>torus</code> und <code>worldEngine</code>
+in <strong>WatorAppFx</strong> zu setzen.</p></li></ol></div></section>
+<section id="_konfiguration_auf_mehrere_xml_dateien_oder_config_klassen_aufteilen"><h2>Konfiguration auf mehrere XML-Dateien oder Config-Klassen aufteilen</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Beispiel</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">&lt;import resource="base-config"/&gt;</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Import der Definitionen von einer anderen XML-Datei.
+ Pfadangaben sind relativ zur importierenden Datei.</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@ImportResource("classpath:/base-config.xml")</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Import der Definitionen aus einer XML-Datei in eine Java-Configuration</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">@Import(BaseConfig.class)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Import der Definitionen aus einer anderen Java-Config</p></td></tr></table>
+<div class="title">Beispiel für Import einer Konfiguration:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="annotation">@Import</span>(BaseConfig.class)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MasterConfig</span> {
+    <span class="comment">// ...</span>
+}</code></pre></section>
+<section id="_aufgabe_9_optional_konfiguration_auf_mehrere_klassen_aufteilen"><h2>Aufgabe 9 (optional): Konfiguration auf mehrere Klassen aufteilen</h2><div class="olist arabic"><ol class="arabic"><li><p>Lagern Sie gemeinsame Teile (Random, LogBeansPostProcessor) aus den beiden Java-Configs
+(für ursprüngliche Anwendung und für Fx-Anwendung) in eine <strong>WatorBaseConfig</strong> aus.</p></li><li><p>Verwenden Sie die <code>@Import</code> Annotation um die <strong>WatorBaseConfig</strong> in die beiden Java-Configs
+einzubinden.</p></li></ol></div></section>
+<section id="_applicationcontext_konfiguration_2"><h2>ApplicationContext Konfiguration</h2><div class="paragraph heading"><p>Fragen?</p></div>
+<div class="paragraph"><p><a href="lesson04-config.html">&#8594; Weiter zu Externe Konfiguration</a></p></div>
+<div class="paragraph"><p><a href="agenda.html">Inhalt</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

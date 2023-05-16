@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 2 - Einstieg in die Entwicklung mit Spring</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script><script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_2_einstieg_in_die_entwicklung_mit_spring" data-state="no-title-footer"><h2>Lektion 2 - Einstieg in die Entwicklung mit Spring</h2></section>
+<section><section id="_erste_schritte"><h2>Erste Schritte</h2><div class="paragraph heading"><p>Ablauf:</p></div><div class="olist arabic"><ol class="arabic"><li><p>Auschecken</p></li><li><p>Bauen</p></li><li><p>Ausführen</p></li></ol></div></section><section id="_benötigte_befehlszeilenwerkzeuge"><h2>Benötigte Befehlszeilenwerkzeuge</h2><div class="ulist"><ul><li><p>GIT (Versionverwaltung) zum Auschecken</p></li><li><p>Maven zum Bauen</p></li></ul></div></section><section id="_bauen_mit_maven"><h2>Bauen mit Maven</h2><div class="title">mvn clean package</div><pre class="CodeRay listingblock"><code>trainer@pc:~$ cd spring-2023.05
+trainer@pc:~/spring-2020.07$ cd lesson02-setup
+trainer@pc:~/spring-2020.07/lesson02-setup$ mvn clean package
+[INFO] Scanning for projects...
+...
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.156 s
+[INFO] Finished at: 2021-07-22T09:55:50+01:00
+[INFO] Final Memory: 18M/213M
+[INFO] ------------------------------------------------------------------------</code></pre></section><section id="_ausführen_mit_maven"><h2>Ausführen mit Maven</h2><div class="title">mvn exec:java</div><pre class="CodeRay listingblock"><code>trainer@pc:~/spring-2023.05/lesson02-setup$ mvn exec:java
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building lesson02-setup 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- exec-maven-plugin:1.5.0:java (default-cli) @ lesson02-setup ---
+Message: Hello World!
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.407 s
+[INFO] Finished at: 2021-07-22T09:57:42+01:00
+[INFO] Final Memory: 8M/243M
+[INFO] ------------------------------------------------------------------------</code></pre></section></section>
+<section id="_aufgabe_1_projekt_auschecken_bauen_und_ausführen"><h2>Aufgabe 1: Projekt auschecken, bauen und ausführen&#8230;&#8203;</h2><div class="olist arabic"><ol class="arabic"><li><p>Holen Sie sich den Beispielcode zu diesem Training mit einem</p><div class="literalblock"><div class="content"><pre>git clone https://github.com/anderscore-gmbh/spring-2023.05</pre></div></div></li><li><p>Wechseln Sie in das Verzeichnis <code>lesson02-setup</code> und
+bauen Sie das Projekt mit <code>mvn clean package</code>.</p></li><li><p>Führen Sie das Projekt mit <code>mvn exec:java</code> aus.</p></li></ol></div></section>
+<section id="_verwendung_einer_ide"><h2>Verwendung einer IDE</h2><div class="paragraph heading"><p>Ablauf</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>Projekt mit IDE öffnen</p></li><li><p>Mit Sourcen vertraut machen</p></li><li><p>Anwendung ausführen</p></li></ol></div></section>
+<section id="_aufgabe_2_projekt_in_ide_importieren_und_ausführen"><h2>Aufgabe 2: Projekt in IDE importieren und ausführen</h2><div class="paragraph"><p>Importieren Sie das Projekt in eine Entwicklungsumgebung Ihrer Wahl und führen Sie damit
+die Anwendung aus.</p></div>
+<div class="paragraph"><p>Empfohlene IDE für diesen Workshop: <strong><a href="https://spring.io/tools">&#8594; Spring Tools 4 for Eclipse</a></strong></p></div>
+<div class="paragraph"><p>Alternativen:</p></div>
+<div class="ulist"><ul><li><p><a href="https://spring.io/tools/sts/all">&#8594; Spring Tool Suite™ 3</a></p></li><li><p><a href="https://www.jetbrains.com/idea/download/">&#8594; IntelliJ IDEA</a></p></li><li><p><a href="https://netbeans.org/downloads/">&#8594; NetBeans IDE</a></p></li><li><p><a href="https://www.eclipse.org/downloads/eclipse-packages/">&#8594; Eclipse IDE for Java EE Developers</a></p></li></ul></div></section>
+<section><section id="_erste_spring_applikation"><h2>Erste Spring Applikation</h2><div class="title">HelloWorldApp.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+    GenericApplicationContext ctx = <span class="keyword">new</span> GenericApplicationContext();
+    ctx.registerBean(<span class="string"><span class="delimiter">&quot;</span><span class="content">greetingService</span><span class="delimiter">&quot;</span></span>, GreetingService.class,
+            () -&gt; <span class="keyword">new</span> GreetingService());
+    ctx.refresh();
+
+    GreetingService service = ctx
+            .getBean(<span class="string"><span class="delimiter">&quot;</span><span class="content">greetingService</span><span class="delimiter">&quot;</span></span>, GreetingService.class);
+    <span class="predefined-type">System</span>.out.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Message: </span><span class="delimiter">&quot;</span></span> + service.getGreeting());
+}</code></pre><div class="paragraph"><p>Was geschieht hier?</p></div><div class="ulist"><ul><li><p>Was ist ein <code>ApplicationContext</code>?</p></li><li><p>Welche Möglichkeiten gibt es sonst noch, einen <code>ApplicationContext</code> anzulegen?</p></li><li><p>Was bewirkt die Methode <code>refresh</code>?</p></li><li><p>Welche Alternativen gibt es, an den <code>GreetingService</code> aus dem <code>ApplicationContext</code> heranzukommen?</p></li></ul></div><div class="paragraph"><p><a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans">
+&#8594; Reference: The IoC Container</a></p></div></section><section id="_was_ist_ein_applicationcontext"><h2>Was ist ein ApplicationContext?</h2><div class="ulist"><ul><li><p>Der <code>ApplicationContext</code> ist ein Container für Service-Objekte, den sogenannten <strong>Beans</strong>.</p></li><li><p>Er speichert diese Objekte bzw. deren <strong>Factories</strong>
+in einer Registry unter einem <strong>eindeutigen Namen</strong>, vergleichbar mit einer HashMap.</p></li><li><p>Beim Erzeugen von Objekten
+nutzt er diese Registry um <strong>Abhängigkeiten aufzulösen</strong>.</p></li></ul></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Nutzen den Debugger um sich den <code>ApplicationContext</code> zur Laufzeit anzusehen.</td></tr></table></div></section><section id="_möglichkeiten_einen_applicationcontext_zu_erzeugen"><h2>Möglichkeiten einen ApplicationContext zu erzeugen</h2><div class="paragraph"><p>Es gibt diverse Klassen, die das ApplicationContext-Interface implementieren, die wichtigsten sind:</p></div>
+<div class="ulist"><ul><li><p><code>ClassPathXmlApplicationContext</code> für XML-Config</p></li><li><p><code>AnnotationConfigApplicationContext</code> für Java-Config</p></li><li><p><code>StaticApplicationContext</code> für Tests</p></li></ul></div>
+<div class="paragraph"><p>Am flexibelsten ist der <code>GenericApplicationContext</code>, der über verschiedene <code>AbstractBeanDefinitionReader</code>
+unterschiedliche Formate für die Context-Definition unterstützt.</p></div></section><section id="_applicationcontext_für_webapps"><h2>ApplicationContext für Webapps</h2><div class="paragraph"><p>Für Webapplikationen gibt es spezielle ApplicationContext Klassen:</p></div>
+<div class="ulist"><ul><li><p><code>XmlWebApplicationContext</code> für XML-Config bei Webapps</p></li><li><p><code>AnnotationConfigWebApplicationContext</code> für Java-Config bei Webapps</p></li><li><p><code>GenericWebApplicationContext</code> ist das Gegenstück zu <code>GenericApplicationContext</code> für Webapps</p></li></ul></div></section><section id="_was_bewirkt_die_methode_refresh"><h2>Was bewirkt die Methode <code>refresh</code>?</h2><div class="ulist"><ul><li><p>Die Methode <em>befüllt</em> den <code>ApplicationContext</code>.</p></li><li><p>Die Methode sollte nur aufgerufen werden, wenn sie nicht bereits
+durch den Konstruktor der jeweiligen <code>ApplicationContext</code> Klasse aufgerufen wird.</p></li></ul></div></section><section id="_welche_alternativen_gibt_es_an_den_trainingservice_aus_dem_applicationcontext_heranzukommen"><h2>Welche Alternativen gibt es, an den <code>TrainingService</code> aus dem <code>ApplicationContext</code> heranzukommen?</h2><div class="ulist"><ul><li class="fragment"><p>Verwendung einer der <code>getBean</code> Methoden der <code>ApplicationContext</code> Schnittstelle</p></li><li class="fragment"><p>Definition einer weiteren Bean mit einer Abhängigkeit zum <code>GreetingService</code></p></li></ul></div></section></section>
+<section><section id="_exkurs_logging"><h2>Exkurs: Logging</h2><div class="paragraph heading"><p>Problem</p></div><div class="ulist"><ul><li><p>Die eingesetzen Bibliotheken verwenden verschiedene Logging-APIs</p></li><li><p>Einheitliche Logging Konfiguration an einer Stelle</p></li><li><p>Eine Logdatei für alle Logausgaben</p></li></ul></div><div class="paragraph heading"><p>Lösung</p></div><div class="ulist"><ul><li><p>Ein Loggingframework besteht aus einer API und einer Engine</p></li><li><p>Eine Bridge ermöglicht den Einsatz einer Engine für fremde APIs</p></li><li><p>In der Regel genügt es, die richtigen Abhängigkeiten anzugeben</p></li></ul></div></section><section id="_exkurs_logging_über_fremde_logging_apis_am_beispiel_slf4j"><h2>Exkurs: Logging über fremde Logging-APIs am Beispiel SLF4J</h2><div class="paragraph"><p><span class="image"><img src="images/lesson02/slf4j-bridges.png" alt="slf4j bridges" height="640"></span></p></div>
+<div class="paragraph"><p><a href="https://www.slf4j.org/legacy.html">&#8594; SLF4J: Bridging legacy APIs</a></p></div></section><section id="_exkurs_logging_frameworks"><h2>Exkurs: Logging Frameworks</h2><div class="ulist"><ul><li><p><a href="https://docs.oracle.com/javase/10/docs/api/java/util/logging/package-summary.html">Java Util Logging (JUL)</a> (JRE Bestandteil)</p></li><li><p><a href="https://logging.apache.org/log4j/2.x/">Apache Log4j 2™</a> <em>(Logging Engine für diesen Workshop)</em></p></li><li><p><a href="https://www.slf4j.org/">Simple Logging Facade for Java (SLF4J)</a> <em>(Logging API für diesen Workshop)</em></p></li><li><p><a href="https://commons.apache.org/proper/commons-logging/">Apache Commons Logging ™ (JCL)</a> (von Spring-Framework verwendet)</p></li><li><p><a href="https://logback.qos.ch/">Logback</a> (Default bei Spring-Boot)</p></li></ul></div></section><section id="_exkurs_logging_seit_spring_5"><h2>Exkurs: Logging seit Spring 5</h2><div class="ulist"><ul><li><p>Spring bringt seit Version 5 im Modul <code>spring-jcl</code> eine eigene
+Logging-Bridge mit, die als Alternative zu <code>jcl-over-slf4j</code>
+verwendet werden kann.</p></li><li><p>Diese unterstützt direkt <strong>Log4J 2</strong> und <strong>JUL</strong> ohne zusätzliche
+Bridges.</p></li><li><p>Um <strong>JCL</strong> zu verwenden, muss man die Abhängigkeit zu <code>spring-jcl</code> exkludieren.</p></li></ul></div></section><section id="_exkurs_log4j_2_abhängigkeiten_spring_4"><h2>Exkurs: Log4J-2-Abhängigkeiten (Spring 4)</h2><div class="title">Logging Abhängigkeiten (Gradle-Format):</div><pre class="CodeRay listingblock"><code class="groovy language-groovy"><span class="comment">// BOM legt Versionen fest</span>
+compile <span class="string"><span class="delimiter">'</span><span class="content">org.apache.logging.log4j:log4j-bom:2.11.2</span><span class="delimiter">'</span></span>
+<span class="comment">// API für Log4J-2</span>
+compile <span class="string"><span class="delimiter">'</span><span class="content">org.apache.logging.log4j:log4j-api</span><span class="delimiter">'</span></span>
+<span class="comment">// Logger-Engine</span>
+compile <span class="string"><span class="delimiter">'</span><span class="content">org.apache.logging.log4j:log4j-core</span><span class="delimiter">'</span></span>
+<span class="comment">// API für SLF4J</span>
+compile <span class="string"><span class="delimiter">'</span><span class="content">org.apache.logging.log4j:log4j-slf4j-impl</span><span class="delimiter">'</span></span>
+<span class="comment">// Commons Logging Bridge</span>
+compile <span class="string"><span class="delimiter">'</span><span class="content">org.apache.logging.log4j:log4j-jcl</span><span class="delimiter">'</span></span>
+<span class="comment">// Commons Logging API</span>
+compile <span class="string"><span class="delimiter">'</span><span class="content">commons-logging:commons-logging</span><span class="delimiter">'</span></span>
+<span class="comment">// Adapater für JUL, benötigt -Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager</span>
+compile <span class="string"><span class="delimiter">'</span><span class="content">org.apache.logging.log4j:log4j-jul</span><span class="delimiter">'</span></span></code></pre>
+<div class="paragraph"><p><a href="https://logging.apache.org/log4j/2.0/runtime-dependencies.html">&#8594; Apache Log4j 2™: Runtime Dependencies</a></p></div></section><section id="_exkurs_log4j_2_abhängigkeiten_spring_5"><h2>Exkurs: Log4J-2-Abhängigkeiten (Spring 5)</h2><div class="paragraph"><p>Die Abhängigkeiten sind auf das notwendig Minimum reduziert:</p></div>
+<div class="title">Logging Abhängigkeiten (Gradle-Format):</div><pre class="CodeRay listingblock"><code class="groovy language-groovy"><span class="comment">// API für SLF4J</span>
+compile <span class="string"><span class="delimiter">'</span><span class="content">org.apache.logging.log4j:log4j-slf4j-impl:2.11.2</span><span class="delimiter">'</span></span></code></pre>
+<div class="paragraph"><p>Über die Abhängigkeiten von <code>log4j-slf4j-impl</code> werden die Log4J2-Engine und die SLF4J-API eingebunden.</p></div></section><section id="_logger_verwenden_slf4j_api"><h2>Logger verwenden (SLF4J API)</h2><div class="title">Logger deklarien:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">Logger</span> log = LoggerFactory.getLogger(MyClass.class);</code></pre>
+<div class="title">Einfache Logausgabe:</div><pre class="CodeRay listingblock"><code class="java language-java">log.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Ingendwas passiert</span><span class="delimiter">&quot;</span></span>);</code></pre>
+<div class="title">Logausgabe mit Parametern:</div><pre class="CodeRay listingblock"><code class="java language-java">log.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Schreibe {} bytes in Datei {}</span><span class="delimiter">&quot;</span></span>, size, file);</code></pre>
+<div class="title">Loggen einer Exception:</div><pre class="CodeRay listingblock"><code class="java language-java">log.error(<span class="string"><span class="delimiter">&quot;</span><span class="content">Schief gegangen</span><span class="delimiter">&quot;</span></span>, ex);</code></pre></section><section id="_logger_konfiguration"><h2>Logger Konfiguration</h2><div class="title">log4j2.xml</div><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;Configuration</span> <span class="attribute-name">status</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">WARN</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">shutdownHook</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">disable</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;Appenders&gt;</span>
+        <span class="tag">&lt;Console</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Console</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">target</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">SYSTEM_OUT</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;PatternLayout</span> <span class="attribute-name">pattern</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/Console&gt;</span>
+        <span class="tag">&lt;File</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">File</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">filename</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">target/app.log</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;PatternLayout</span> <span class="attribute-name">pattern</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/File&gt;</span>
+    <span class="tag">&lt;/Appenders&gt;</span>
+    <span class="tag">&lt;Loggers&gt;</span>
+        <span class="tag">&lt;Root</span> <span class="attribute-name">level</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">info</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;AppenderRef</span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Console</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+            <span class="tag">&lt;AppenderRef</span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">File</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/Root&gt;</span>
+        <span class="tag">&lt;Logger</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">setup</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">level</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">debug</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <span class="comment">&lt;!-- Definiert Logger für Package 'setup' --&gt;</span>
+    <span class="tag">&lt;/Loggers&gt;</span>
+<span class="tag">&lt;/Configuration&gt;</span></code></pre></section></section>
+<section id="_aufgabe_3_logging"><h2>Aufgabe 3: Logging</h2><div class="olist arabic"><ol class="arabic"><li><p>Stellen Sie das Root-Level der Logging-Konfiguration auf <code>DEBUG</code>.<br>
+Was besagen die Logausgaben von Spring, die Sie damit erhalten?</p></li><li><p>Bauen Sie eine Logausgabe in die main-Methode Ihrer Applikation ein.</p></li></ol></div></section>
+<section><section id="_lebenszyklus_einer_bean"><h2>Lebenszyklus einer Bean</h2><div class="paragraph heading"><p>Möglichkeiten, den Lebenszyklus einer Bean zu beeinflussen</p></div><div class="ulist"><ul><li><p>Interfaces <code>InitializingBean</code>, <code>DisposableBean</code> und <code>Lifecycle</code></p></li><li><p>JSR-250 Annotationen <code>@PostConstruct</code> und <code>@PreDestroy</code></p></li><li><p>Explizite Angabe der <em>init-method</em> oder <em>destroy-method</em> per Konfiguration</p></li><li><p>Default Init/Destroy-Methoden (nur XML-Config)</p></li><li><p>public close/shutdown (nur JavaConfig), abschaltbar über <code>@Bean(destroyMethod="")</code></p></li></ul></div></section><section id="_shutdown_hook"><h2>Shutdown-Hook</h2><div class="paragraph"><p>Der ShutdownHook ist notwendig, damit der ApplicationContext
+sauber heruntergefahren wird.</p></div>
+<div class="literalblock"><div class="content"><pre>ctx.registerShutdownHook();</pre></div></div>
+<div class="admonitionblock warning teacherBox"><table><tr><td class="icon"><i class="fa fa-warning" title="Warning"></i></td><td class="content">In der <strong>Log4J 2</strong> Konfiguration muss mit <code>shutdownHook="disable"</code>
+verhindert werden, dass Log4J vor Spring beendet wird.</td></tr></table></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content"><code>mvn exec:java</code> startet keine eigene VM, deshalb wird der Shutdown-Hook
+nie augerufen.</td></tr></table></div></section><section id="_initdestroy_über_lifecycle_interfaces"><h2>Init/Destroy über Lifecycle-Interfaces</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MyService</span> <span class="directive">implements</span> InitializingBean, DisposableBean {
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">Logger</span> log = LoggerFactory.getLogger(MyService.class);
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> afterPropertiesSet() <span class="directive">throws</span> <span class="exception">Exception</span> {
+        log.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">service created</span><span class="delimiter">&quot;</span></span>);
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> destroy() <span class="directive">throws</span> <span class="exception">Exception</span> {
+        log.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">service destroyed</span><span class="delimiter">&quot;</span></span>);
+        <span class="predefined-type">System</span>.out.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">service destroyed</span><span class="delimiter">&quot;</span></span>); <span class="comment">// falls Logging schon beendet wurde</span>
+    }
+}</code></pre></section><section id="_initdestroy_über_jsr_250_annotationen"><h2>Init/Destroy über JSR-250 Annotationen</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@PostConstruct</span>
+<span class="directive">public</span> <span class="type">void</span> before() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    log.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">service created</span><span class="delimiter">&quot;</span></span>);
+}
+
+<span class="annotation">@PreDestroy</span>
+<span class="directive">public</span> <span class="type">void</span> after() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    log.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">service destroyed</span><span class="delimiter">&quot;</span></span>);
+}</code></pre>
+<div class="admonitionblock caution"><table><tr><td class="icon"><i class="fa fa-fire" title="Caution"></i></td><td class="content">Dafür ist ein <code>AnnotationConfigApplicationContext</code> notwendig!</td></tr></table></div></section></section>
+<section id="_aufgabe_4_lebenszyklus_einer_bean_nachvollziehen"><h2>Aufgabe 4: Lebenszyklus einer Bean nachvollziehen</h2><div class="paragraph"><p>Erweitern Sie den <code>GreetingService</code> so, dass er loggt,</p></div>
+<div class="ulist"><ul><li><p>wenn er vollständig initialisiert wurde und</p></li><li><p>wenn er zerstört wird.</p></li></ul></div>
+<div class="paragraph"><p><br></p></div>
+<div class="admonitionblock caution teacherBox"><table><tr><td class="icon"><i class="fa fa-fire" title="Caution"></i></td><td class="content">Beachten Sie, dass <code>registerShutdownHook()</code> notwendig ist, damit der
+ApplicationContext mitbekommt, wenn die Applikation beendet wird.</td></tr></table></div></section>
+<section id="_lernziele_dieser_lektion"><h2>Lernziele dieser Lektion</h2><div class="ulist"><ul><li><p>Entwicklungsumgebung einrichten (Beispielanwendung auschecken, bauen und laufen lassen)</p></li><li><p>Verwendung der Spring-Dokumentation (Reference, API, Guides)</p></li><li><p>Logging konfigurieren</p></li><li><p>Wie erzeugt man einen ApplicationContext?</p></li><li><p>Lebenszyklus des ApplicationContext (registerShutdownHook)</p></li><li><p>Wie nutzt man einen ApplicationContext (Zugriff auf Beans)?</p></li><li><p>Was ist der ApplicationContext?</p></li><li><p>ApplicationContext mit dem Debugger untersuchen</p></li></ul></div></section>
+<section id="_einstieg_in_die_entwicklung_mit_spring"><h2>Einstieg in die Entwicklung mit Spring</h2><div class="paragraph heading"><p>Fragen?</p></div>
+<div class="paragraph"><p><a href="lesson03-context.html">&#8594; Weiter zu ApplicationContext Konfigurieren</a></p></div>
+<div class="paragraph"><p><a href="agenda.html">Inhalt</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

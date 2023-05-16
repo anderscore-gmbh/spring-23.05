@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clock</title>
+    <script>
+        window.onload = function() {
+            var clockEl = document.getElementById("clock")
+            var jsonStream = new EventSource('/api/clock')
+            jsonStream.onmessage = function (event) {
+                var message = JSON.parse(event.data);
+                clockEl.innerText = message.formattedTime;
+            };
+        }
+    </script>
+</head>
+<body>
+<h1 id="clock"></h1>
+</body>
+</html>

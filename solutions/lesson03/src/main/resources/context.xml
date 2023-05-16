@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="rnd" class="java.util.concurrent.ThreadLocalRandom" factory-method="current"/>
+
+    <bean id="torus" class="wator.simple.SimpleTorus">
+        <constructor-arg index="0" value="60"/>
+        <constructor-arg index="1" value="10"/>
+    </bean>
+
+    <bean id="fishStrategy" class="wator.core.FishStrategy">
+        <property name="breedTime" value="3"/>
+        <property name="rnd" ref="rnd"/>
+        <property name="torus" ref="torus"/>
+    </bean>
+
+    <bean id="sharkStrategy" class="wator.core.SharkStrategy">
+        <property name="breedTime" value="5"/>
+        <property name="starveTime" value="4"/>
+        <property name="rnd" ref="rnd"/>
+        <property name="torus" ref="torus"/>
+    </bean>
+
+    <bean id="worldEngine" class="wator.core.WorldEngine" factory-method="createPopulatedWorld">
+        <constructor-arg value="0.3"/>
+        <constructor-arg value="0.1"/>
+        <constructor-arg ref="rnd"/>
+        <constructor-arg ref="torus"/>
+        <constructor-arg>
+            <array>
+                <ref bean="fishStrategy"/>
+                <ref bean="sharkStrategy"/>
+            </array>
+        </constructor-arg>
+    </bean>
+</beans>
+

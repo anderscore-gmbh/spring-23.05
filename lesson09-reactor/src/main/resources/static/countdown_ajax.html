@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Count-Down</title>
+    <script>
+        function countdown() {
+            var countEl = document.getElementById("count")
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                console.log("readyState: " + this.readyState + ", status = " + this.status + ", response = " + this.responseText);
+                if (this.readyState == 4 && this.status == 200) {
+                    countEl.innerText = this.responseText;
+                }
+            }
+            xhttp.open("GET", "/api/countdown/5", true);
+            xhttp.send();
+        }
+    </script>
+</head>
+<body>
+count-down: <span id="count"></span>
+<button onclick="countdown()">Start</button>
+</body>
+</html>

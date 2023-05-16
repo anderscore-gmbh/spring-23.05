@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Count-Down</title>
+    <script>
+        function countdown() {
+            var countEl = document.getElementById("count")
+            var jsonStream = new EventSource('/api/countdown/10')
+            jsonStream.onmessage = function (event) {
+                var message = JSON.parse(event.data);
+                countEl.innerText = message;
+                if (message == 0) {
+                    jsonStream.close();
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+count-down: <span id="count"></span>
+<button onclick="countdown()">Start</button>
+</body>
+</html>

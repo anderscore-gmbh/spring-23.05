@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="wator.core"/>
+
+    <bean id="rnd" class="java.util.Random"/>
+
+    <bean id="torus" class="wator.simple.SimpleTorus">
+        <constructor-arg index="0" value="60"/>
+        <constructor-arg index="1" value="10"/>
+    </bean>
+
+    <bean id="fishStrategy" class="wator.core.FishStrategy">
+        <property name="breedTime" value="3"/>
+    </bean>
+
+    <bean id="sharkStrategy" class="wator.core.SharkStrategy">
+        <property name="breedTime" value="5"/>
+        <property name="starveTime" value="4"/>
+    </bean>
+
+</beans>
+

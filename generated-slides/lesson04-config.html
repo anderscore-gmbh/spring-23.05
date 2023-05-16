@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 4 - Externe Konfiguration</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script><script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_4_externe_konfiguration" data-state="no-title-footer"><h2>Lektion 4 - Externe Konfiguration</h2></section>
+<section id="_externe_konfiguration"><h2>Externe Konfiguration</h2><div class="paragraph heading"><p>Themen</p></div>
+<div class="ulist"><ul><li><p>Zugriff auf Ressourcen</p></li><li><p>Konfiguration über eine Properties-Datei</p></li><li><p>Umschalten zwischen Konfigurationsdateien</p></li><li><p>Spring Expression Language</p></li><li><p>Spring Environment</p></li><li><p>Implementierung einer PropertySource</p></li><li><p>Flexible Konfiguration mittels Profilen</p></li><li><p>Verwendung der @Conditional Annotation</p></li></ul></div></section>
+<section><section id="_ressourcen"><h2>Ressourcen</h2><div class="paragraph heading"><p>Was sind Ressourcen?</p></div><div class="ulist"><ul><li><p>Ressourcen sind beliebige Dateien (Bilder, Schriften, Konfigurationsdateien, Daten, etc.)</p></li><li><p><code>java.net.URL</code> hat Einschränkungen:</p><div class="ulist"><ul><li><p>Kein Zugriff auf Ressourcen im <em>classpath</em></p></li><li><p>Kein Zugriff auf Ressourcen relativ zu ServletContext</p></li><li><p>Keine Prüfung, ob Ressource existiert</p></li></ul></div></li><li><p>Spring bietet eigene Abstraktion über das <code>Resource</code> Interface</p></li></ul></div><div class="paragraph"><p><a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#resources">
+&#8594; Reference: Resources</a></p></div></section><section id="_das_resource_interface"><h2>Das Resource Interface</h2><div class="title">Resource.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">Resource</span> <span class="directive">extends</span> InputStreamSource {
+        <span class="type">boolean</span> exists();
+        <span class="predefined-type">URL</span> getURL() <span class="directive">throws</span> <span class="exception">IOException</span>;
+        <span class="predefined-type">File</span> getFile() <span class="directive">throws</span> <span class="exception">IOException</span>;
+        Resource createRelative(<span class="predefined-type">String</span> relativePath) <span class="directive">throws</span> <span class="exception">IOException</span>;
+        <span class="predefined-type">String</span> getFilename();
+        <span class="predefined-type">String</span> getDescription();
+        ...
+}</code></pre>
+<div class="title">InputStreamSource.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">InputStreamSource</span> {
+        <span class="predefined-type">InputStream</span> getInputStream() <span class="directive">throws</span> <span class="exception">IOException</span>;
+}</code></pre></section><section id="_resource_implementierungen"><h2>Resource Implementierungen</h2><div class="imageblock" style=""><img src="images/Resource.svg" alt="Resource" width="1600" height="250"></div></section><section id="_resourceloader"><h2>ResourceLoader</h2><div class="imageblock" style=""><img src="images/ResourceLoader.svg" alt="ResourceLoader" width="1600" height="500"></div></section><section id="_resource_location"><h2>Resource Location</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:20%"><col style="width:40%"><col style="width:40%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Präfix</th><th class="tableblock halign-left valign-top">Beispiel</th><th class="tableblock halign-left valign-top">Erklärung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">classpath:</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">classpath:com/myapp/config.xml</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Aus dem <em>classpath</em></p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">classpath*:</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">classpath*:META-INF/beans.xml</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Alle META-INF/beans.xml im <em>classpath</em></p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">file:</p></td><td class="tableblock halign-left valign-top"><p class="tableblock"><a href="file:///data/config.xml" class="bare">file:///data/config.xml</a></p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Datei /data/config.xml</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">http:</p></td><td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://myserver/logo.png" class="bare">http://myserver/logo.png</a></p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Als URL</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">(ohne)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">com/myapp/config.xml</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Abhängig vom <code>ApplicationContext</code></p></td></tr></table>
+<div class="paragraph"><p><br></p></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Die <em>Resource</em> Abstraktion kann man auch ohne den Rest von Spring verwenden.</td></tr></table></div></section><section id="_verwendung_einer_ressource"><h2>Verwendung einer Ressource</h2><div class="ulist"><ul><li><p>Ressource über ApplicationContext laden</p><div class="literalblock"><div class="content"><pre>Resource resource = ctx.getResource("classpath:config.properties");</pre></div></div></li><li><p>Resource per Dependency Injection</p><div class="literalblock"><div class="content"><pre>@Value("classpath:config.properties")
+private Resource config;</pre></div></div></li></ul></div></section><section id="_implementieren_von_resourceloaderaware"><h2>Implementieren von ResourceLoaderAware</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ResourceLoaderAwareBean</span> <span class="directive">implements</span> ResourceLoaderAware, InitializingBean {
+    <span class="directive">private</span> ResourceLoader resourceLoader;
+    <span class="directive">private</span> <span class="predefined-type">Properties</span> config;
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> setResourceLoader(ResourceLoader resourceLoader) {
+        <span class="local-variable">this</span>.resourceLoader = resourceLoader;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> afterPropertiesSet() <span class="directive">throws</span> <span class="exception">Exception</span> {
+        Resource resource = resourceLoader.getResource(<span class="string"><span class="delimiter">&quot;</span><span class="content">classpath:config.properties</span><span class="delimiter">&quot;</span></span>);
+        config = <span class="keyword">new</span> <span class="predefined-type">Properties</span>();
+        config.load(resource.getInputStream());
+    }
+}</code></pre>
+<div class="paragraph"><p>Jede Bean, die <code>ResourceLoaderAware</code> implementiert erhält den <code>ResourceLoader</code>.</p></div></section></section>
+<section id="_aufgabe_1_eine_properties_datei_mittels_resource_abstraction_laden"><h2>Aufgabe 1: Eine Properties-Datei mittels Resource-Abstraction laden</h2><div class="paragraph"><p>Nutzen Sie den <code>ApplicationContext</code> in <code>WatorAppSimple</code>, um die <em>wator-prod.properties</em> Datei
+als <code>Resource</code> zu laden und geben Sie den Inhalt dieser Datei mit der Methode <code>dumpProperties</code> aus.</p></div>
+<div class="paragraph"><p><br></p></div>
+<div class="title">WatorAppSimple.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">private</span> <span class="type">void</span> dumpProperties(<span class="predefined-type">InputStream</span> is) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    <span class="predefined-type">Properties</span> props = <span class="keyword">new</span> <span class="predefined-type">Properties</span>();
+    props.load(is);
+    props.list(<span class="predefined-type">System</span>.out);
+}</code></pre></section>
+<section><section id="_externe_konfiguration_2"><h2>Externe Konfiguration</h2><div class="paragraph heading"><p>Motivation</p></div><div class="paragraph"><p>Manche Konfigurationswerte sind</p></div><div class="ulist"><ul><li><p>zum Entwicklungszeitpunkt noch nicht bekannt,</p></li><li><p>sind abhängig von der Laufzeitumgebung oder</p></li><li><p>müssen nachträglich änderbar sein.</p></li></ul></div><div class="paragraph"><p>Im Java-Umfeld werden dafür meistens Properties-Dateien verwendet.<br>
+Diese enthalten einfache Key-Value Paare:</p></div><div class="literalblock"><div class="content"><pre>server.port=8081
+debug: true</pre></div></div><div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Man kann entweder '=' oder ': ' als Trenner zwischen Schlüssel und Wert verwenden.</td></tr></table></div></section><section id="_propertysource"><h2>@PropertySource</h2><div class="paragraph"><p>Bei Spring bindet man eine Properties-Datei über die <code>@PropertySource</code> Annotation ein:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="annotation">@PropertySource</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">classpath:app.properties</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyJavaConfig</span> {
+    <span class="comment">//...</span>
+}</code></pre>
+<div class="paragraph"><p>Das XML-Gegenstück ist:</p></div>
+<pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;context:property-placeholder</span> <span class="attribute-name">location</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">classpath:app.properties</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span></code></pre></section><section id="_zugriff_auf_property_werte"><h2>Zugriff auf Property-Werte</h2><div class="paragraph"><p>Platzhalter der Form <code>${key}</code> werden in Annotationsparameter durch die
+entsprechenden Property-Werte ersetzt.
+Häufig wird das in Kombination mit der <code>@Value</code> Annotation verwendet:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">${server.port}</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">private</span> <span class="type">int</span> serverPort;
+
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:${server.port}/</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">private</span> <span class="predefined-type">String</span> serverUrl;
+
+<span class="annotation">@Bean</span>
+SomeService someService(<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">${debug}</span><span class="delimiter">&quot;</span></span>) <span class="type">boolean</span> debug) {</code></pre>
+<div class="paragraph"><p>In XML genügt es direkt die <code>${key}</code> Platzhalter in Werten zu verwenden.</p></div></section><section id="_defaultwerte"><h2>Defaultwerte</h2><div class="paragraph"><p>Man kann auch Platzhalter mit Defaultwerten definieren. Das lässt sich sogar schachteln:</p></div>
+<div class="title">AppConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">${service.port:9080}</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">private</span> <span class="type">int</span> servicePort;
+
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">${service.url:http://localhost:${service.port:9080}/}</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">private</span> <span class="predefined-type">String</span> serviceUrl;</code></pre>
+<div class="paragraph"><p>Platzhalter lassen sich insbesondere auch für die <code>@PropertySource</code> verwenden:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@PropertySource</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">classpath:config-${platform:dev}.properties</span><span class="delimiter">&quot;</span></span>)</code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Damit sind unterschiedliche Konfigurationen für verschiede Plattformen möglich.</td></tr></table></div></section><section id="_werte_für_platzhalter_setzen"><h2>Werte für Platzhalter setzen</h2><div class="paragraph"><p>Platzhalter-Werte können auch über Umgebungsvariablen oder System-Properties (<code>-Dservice.port=5555</code>) angegeben
+werden, diese überschreiben ggf. entsprechende Werte aus Properties-Dateien. Dabei haben System-Properties
+die höchste Priorität.</p></div>
+<div class="admonitionblock caution teacherBox"><table><tr><td class="icon"><i class="fa fa-fire" title="Caution"></i></td><td class="content">Wie überall bei Java kommt es bei Properties auf Groß-/Kleinschreibung an!</td></tr></table></div></section><section id="_propertysourcesplaceholderconfigurer"><h2>PropertySourcesPlaceholderConfigurer</h2><div class="paragraph"><p>Bei älteren Spring-Versionen (vor 4.3) war es notwendig explizit einen <code>PropertySourcesPlaceholderConfigurer</code>
+anzulegen, damit <code>${key}</code> Platzhalter ersetzt wurden. Dieser musste im ApplicationContext vorhanden sein, bevor
+der 1. Platzhalter zu interpretieren war, deshalb wurde er mit einer <code>static</code> Methode erzeugt:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> <span class="directive">static</span> PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+    <span class="keyword">return</span> <span class="keyword">new</span> PropertySourcesPlaceholderConfigurer();
+}</code></pre>
+<div class="admonitionblock warning teacherBox"><table><tr><td class="icon"><i class="fa fa-warning" title="Warning"></i></td><td class="content">Nicht mit dem veralteten <code>PropertyPlaceholderConfigurer</code> verwechseln!</td></tr></table></div></section></section>
+<section id="_aufgaben_2_externe_konfiguration_über_properties_dateien"><h2>Aufgaben 2: Externe Konfiguration über Properties Dateien</h2><div class="olist arabic"><ol class="arabic"><li><p>Ergänzen Sie die <code>WatorBaseConfig</code> um die <code>@PropertySource</code> Notation, so dass die <em>wator-prod.properties</em>
+geladen wird.</p></li><li><p>Machen Sie die entsprechenden Werte über <code>fish.breedTime</code>, <code>shark.breedTime</code> und <code>shark.starveTime</code>
+konfigurierbar. Die Defaultwerte sollen bestehen bleiben.</p></li><li><p>Konfigurieren Sie die Wiederholungsrate für den <code>Timer</code> mit der Property <code>tick.millis</code>. Sie müssen dafür
+die Verzögerung über <code>fixedDelayString</code> statt über <code>fixedDelay</code> angeben.</p></li><li><p>Erstellen Sie eine Kopie <em>wator-dev.properties</em> der <em>wator-prod.properties</em> und sorgen Sie dafür,
+dass man mit <code>-Dplatform=dev</code> zwischen den Konfigurationen umschalten kann.</p></li><li><p>Stellen Sie sicher, dass die Anwendung auch noch läuft, wenn Sie z.B. mit <code>-Dplatform=none</code> aufgerufen wird.
+Sie müssen dafür bei der PropertySource <code>ignoreResourceNotFound = true</code> setzen.</p></li><li><p><em>Optional:</em> Falls Sie noch Zeit haben, dann führen Sie die gleichen Änderungen bei der XML basierten
+Konfiguration durch. Sie benötigen dafür `&lt;context:property-placeholder &#8230;&#8203;/&gt;'.</p></li></ol></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Sie sehen die aktuellen Einstellungen beim Starten der Applikation in den Logausgaben.<br>
+Dafür sorgt der <code>LogBeansPostProcessor</code>.</td></tr></table></div></section>
+<section><section id="_spring_expression_language_spel"><h2>Spring Expression Language (SpEL)</h2><div class="paragraph heading"><p>Motivation</p></div><div class="ulist"><ul><li><p>Für den Fall, dass einfache <code>${}</code> Platzhalter nicht ausreichen,<br>
+bietet Spring eine sehr mächtige Expression Language.</p></li><li><p>Expressions werden genauso wie Platzhalter verwendet, aber haben<br>
+die Form <code>#{}</code>, z. B. <code>#{ 1 + 1 }</code>.</p></li><li><p>Man kann auch Platzhalter in Expressions verwenden,<br>
+beispielsweise: <code>#{ ${service.port} + 1 }</code>.</p></li></ul></div></section><section id="_spel_beispiele"><h2>SpEL Beispiele</h2><div class="title">AppConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{ 'http://localhost:' + (${server.port} + 1) }</span><span class="delimiter">&quot;</span></span>) <span class="predefined-type">String</span> urlValue,
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{ T(java.lang.Math).random() * 100.0 }</span><span class="delimiter">&quot;</span></span>) <span class="type">double</span> randomValue,
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{ someService.serviceValue }</span><span class="delimiter">&quot;</span></span>) <span class="type">int</span> beanProperty,
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{ systemProperties['service.port'] ?: 8888 }</span><span class="delimiter">&quot;</span></span>) <span class="type">int</span> systemProperty, <span class="comment">// Elvis Operator</span>
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{ {1, 3, 5, 7} }</span><span class="delimiter">&quot;</span></span>) <span class="predefined-type">List</span>&lt;<span class="predefined-type">Integer</span>&gt; listValue,
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{ {banane: 'gelb', tomate: 'rot', gurke: 'grün'} }</span><span class="delimiter">&quot;</span></span>) <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">String</span>&gt; mapValue,
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{ new int[]{3,2,1} }</span><span class="delimiter">&quot;</span></span>) <span class="type">int</span><span class="type">[]</span> arrayValue, <span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{ 'abcde'.substring(1, 4) }</span><span class="delimiter">&quot;</span></span>) <span class="predefined-type">String</span> subString</code></pre>
+<div class="paragraph"><p><a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions">
+&#8594; Reference: Spring Expression Language (SpEL)</a>.</p></div></section></section>
+<section id="_aufgabe_3_verwendung_der_spring_expression_language_spel"><h2>Aufgabe 3: Verwendung der Spring Expression Language (SpEL)</h2><div class="olist arabic"><ol class="arabic"><li><p>Nutzen Sie EL-Ausdrücke, um die Werte folgendermaßen zu setzen:</p><div class="literalblock"><div class="content"><pre>sharkBreedTime = fishBreedTime * 2
+sharkStarveTime = fishBreedTime * 2 - 2</pre></div></div></li><li><p>Für die <em>fishBreedTime</em> soll zusätzlich gelten:</p><div class="literalblock"><div class="content"><pre>fishBreedTime =
+    Wert aus der Property fish.breedTime falls gesetzt
+    Andernfalls: Zufallswert zwischen 2 und 20</pre></div></div></li><li><p>Wie hätten Sie diese Aufgabe ohne Expression-Language gelöst?</p></li></ol></div></section>
+<section><section id="_environment"><h2>Environment</h2><div class="paragraph heading"><p>Hintergrund</p></div><div class="paragraph"><p>Das <code>Environment</code> ist die Quelle für Platzhalter-Werte.</p></div><div class="paragraph"><p>Statt über die <code>@Value</code> Annotation kann man das
+<code>Environment</code> auch direkt verwenden:</p></div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Autowired</span>
+<span class="directive">private</span> Environment env;</code></pre><div class="paragraph"><p>Zum Zugriff auf die Werte bietet <code>Environment</code> verschiedene <code>getProperty</code> Methoden, z.B. mit Typ und Defaultwert:</p></div><pre class="CodeRay listingblock"><code class="java language-java"><span class="type">int</span> port = env.getProperty(<span class="string"><span class="delimiter">&quot;</span><span class="content">service.port</span><span class="delimiter">&quot;</span></span>, <span class="predefined-type">Integer</span>.class, <span class="integer">8079</span>);</code></pre><div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Gegenüber der Expression Language bietet der direkte Zugriff auf das Environment den Vorteil, dass Syntaxfehler
+direkt vom Compiler erkannt werden.</td></tr></table></div></section><section id="_environment_datenstruktur"><h2>Environment Datenstruktur</h2><div class="imageblock" style=""><img src="images/Environment.svg" alt="Environment" width="1600" height="300"></div>
+<div class="paragraph"><p>Die Reihenfolge der Property Sources bestimmt die Priorität (der Erste gewinnt).</p></div></section><section id="_propertysource_implementieren"><h2>PropertySource implementieren</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SimpleMapPropertySource</span> <span class="directive">extends</span> PropertySource&lt;<span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt;&gt; {
+    <span class="directive">public</span> SimpleMapPropertySource(<span class="predefined-type">String</span> name, <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; source) {
+        <span class="local-variable">super</span>(name, source); <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">Object</span> getProperty(<span class="predefined-type">String</span> name) { <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="keyword">return</span> source.get(name);
+    }
+}</code></pre>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Jede <code>PropertySource</code> hat einen Namen und Optional eine Quelle für die Propertywerte</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td>Die <code>getProperty()</code> Methode muss auf jeden Fall implementiert werden</td></tr></table></div></section><section id="_propertysource_verwenden"><h2>PropertySource verwenden</h2><pre class="CodeRay listingblock"><code class="java language-java">SimpleMapPropertySource propertySource = <span class="keyword">new</span> SimpleMapPropertySource(<span class="string"><span class="delimiter">&quot;</span><span class="content">simple-map</span><span class="delimiter">&quot;</span></span>, map);
+AnnotationConfigApplicationContext ctx = <span class="keyword">new</span> AnnotationConfigApplicationContext(); <i class="conum" data-value="1"></i><b>(1)</b>
+ctx.getEnvironment().getPropertySources().addLast(propertySource); <i class="conum" data-value="2"></i><b>(2)</b>
+ctx.register(AppConfig.class);
+ctx.refresh(); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Keine Konfiguration angeben, um <code>refresh()</code> zu verhindern</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td>Registriert <code>propertySource</code> als letztes, d.h. mit niedrigster Priorität</td></tr><tr><td><i class="conum" data-value="3"></i><b>3</b></td><td>Mit <code>refresh()</code> wird der <code>ApplicationContext</code> initialisiert</td></tr></table></div>
+<div class="admonitionblock warning teacherBox"><table><tr><td class="icon"><i class="fa fa-warning" title="Warning"></i></td><td class="content">@PropertySource&#8217;s in der Konfiguration werden beim Refresh hinzugefügt!</td></tr></table></div></section></section>
+<section id="_aufgaben_4_environment_selbst_implementierte_propertysource"><h2>Aufgaben 4: Environment selbst implementierte PropertySource</h2><div class="olist arabic"><ol class="arabic"><li><p>Nutzen Sie nun das <code>Environment</code>, um die beiden Strategies zu konfigurieren.
+Die Applikation soll sich genauso wie nach Aufgabe 2 verhalten.</p></li><li><p>Implementieren Sie eine <code>RandomPropertySource</code>, die für jede der 3 Strategy-Properties einen Zufallswert zwischen 1 und 100 zurückliefert und binden Sie diese <code>RandomPropertySource</code> ein.</p></li></ol></div></section>
+<section><section id="_profile"><h2>Profile</h2><div class="paragraph heading"><p>Einsatz von @Profile</p></div><div class="ulist"><ul><li><p>Unterschiedliche Umgebungen (Produktion, Entwicklung) erfordern unterschiedliche Konfiguration.</p></li><li><p>Profile kommen zum Einsatz, wenn Einstellungen (Konfigurationswerte) nicht ausreichen.</p></li><li><p>Mit der Annotation <code>@Profile("profilname")</code> legt man fest, dass eine Konfiguration nur gelten
+soll, wenn das entsprechende Profil aktiviert ist.</p></li><li><p>Die <code>@Profile</code> Annotation kann man sowohl auf eine ganze (Konfigurations-)Klassen als auch auf
+einzelne Bean-Methoden anwenden.</p></li><li><p>Profile lassen sich mit <code>&amp;</code> (und), <code>|</code> (oder), <code>!</code> (Negation) und Klammern verknüpfen:</p><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Profile</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">production &amp; (us-east | eu-central)</span><span class="delimiter">&quot;</span></span>)</code></pre></li></ul></div><div class="paragraph"><p><a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-definition-profiles-java">
+&#8594; Reference: Using @Profile</a></p></div></section><section id="_profile_aktivieren"><h2>Profile aktivieren</h2><div class="paragraph"><p>Man kann mehrere Profile gleichzeitig aktiveren, entweder programmatisch:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">ctx.getEnvironment().setActiveProfiles(<span class="string"><span class="delimiter">&quot;</span><span class="content">profile1</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">profile2</span><span class="delimiter">&quot;</span></span>);</code></pre>
+<div class="paragraph"><p>Oder über die <code>spring.profiles.active</code> Property, z. B. mit:</p></div>
+<div class="literalblock"><div class="content"><pre>-Dspring.profiles.active="profile1,profile2"</pre></div></div>
+<div class="paragraph"><p>Wenn kein Profil aktiviert wurde, dann ist immer das <strong><code>default</code></strong> Profil aktiv.</p></div></section><section id="_implementierung_von_profile"><h2>Implementierung von <code>@Profile</code></h2><div class="title">org.springframework.context.annotation.Profile</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Target</span>({<span class="predefined-type">ElementType</span>.TYPE, <span class="predefined-type">ElementType</span>.METHOD})
+<span class="annotation">@Retention</span>(<span class="predefined-type">RetentionPolicy</span>.RUNTIME)
+<span class="annotation">@Documented</span>
+<span class="annotation">@Conditional</span>(ProfileCondition.class) <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="directive">public</span> <span class="annotation">@interface</span> Profile {
+    <span class="predefined-type">String</span><span class="type">[]</span> value();
+}</code></pre>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td><code>@Profile</code> ist eine Metaannotation, für <code>@Conditional(ProfileCondition.class)</code>.</td></tr></table></div>
+<div class="paragraph"><p>Mit <code>@Conditional</code> kann man die Registrierung einer Konfiguration oder einer Bean mit einer
+Bedingung (<code>Condition</code>) verknüpfen.</p></div></section><section id="_implementierung_der_profilecondition"><h2>Implementierung der <code>ProfileCondition</code></h2><div class="title">org.springframework.context.annotation.ProfileCondition</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="type">class</span> <span class="class">ProfileCondition</span> <span class="directive">implements</span> <span class="predefined-type">Condition</span> {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">boolean</span> matches(ConditionContext context, AnnotatedTypeMetadata metadata) { <i class="conum" data-value="1"></i><b>(1)</b>
+        MultiValueMap&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; attrs = metadata
+                .getAllAnnotationAttributes(Profile.class.getName());
+        <span class="keyword">if</span> (attrs != <span class="predefined-constant">null</span>) {
+            <span class="keyword">for</span> (<span class="predefined-type">Object</span> value : attrs.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>)) {
+                <span class="keyword">if</span> (context.getEnvironment()
+                        .acceptsProfiles(Profiles.of((<span class="predefined-type">String</span><span class="type">[]</span>) value))) {
+                    <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+                }
+            }
+            <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+        }
+        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+    }
+}</code></pre>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Die <code>matches</code> Methode ist die einzige Methode, die jede <code>Condition</code> implementieren muss.</td></tr></table></div></section></section>
+<section id="_aufgabe_5_profile_und_conditional"><h2>Aufgabe 5: Profile und Conditional</h2><div class="olist arabic"><ol class="arabic"><li><p>Ändern Sie die <code>WatorFxConfig</code> so, dass dort 2 verschiedene <code>WritableImageTorus</code> Beans
+in unterschiedlichen Größen erstellt werden. Nutzen Sie dafür die Profile <em>big</em>
+und <em>default</em>.</p></li><li><p><em>Optional</em>: Implementieren Sie eine Annotation <code>@Big</code> nebst zugehöriger Condition, so dass Sie <code>@Profile("big")</code> durch <code>@Big</code> und <code>@Profile("default")</code> durch <code>@Big(false)</code> ersetzen können.</p></li></ol></div></section>
+<section id="_zusammenfassung"><h2>Zusammenfassung</h2><div class="ulist"><ul><li><p>ApplicationContext Konfiguration</p><div class="ulist"><ul><li><p>XML-Config</p></li><li><p>Java-Config</p></li><li><p>Annotationsbasierte Konfiguration</p></li></ul></div></li><li><p>Externe Konfiguration</p><div class="ulist"><ul><li><p>Zugriff auf Ressourcen</p></li><li><p>Konfigurationswerte angeben und auswerten</p></li><li><p>Spring Expression Language</p></li><li><p>Environment</p></li><li><p>Profile und Conditional</p></li></ul></div></li></ul></div></section>
+<section id="_externe_konfiguration_3"><h2>Externe Konfiguration</h2><div class="paragraph heading"><p>Fragen?</p></div>
+<div class="paragraph"><p><a href="lesson05-testing.html">&#8594; Weiter zu Testentwicklung mit Spring</a></p></div>
+<div class="paragraph"><p><a href="agenda.html">Inhalt</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

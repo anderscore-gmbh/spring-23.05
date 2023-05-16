@@ -1,0 +1,345 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 6 - Persistenz und Transaktionen</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script><script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_6_persistenz_und_transaktionen" data-state="no-title-footer"><h2>Lektion 6 - Persistenz und Transaktionen</h2><div class="paragraph center"><p>Wie funktioniert der Datenbankzugriff mit Java?</p></div></section>
+<section id="_lektion_06"><h2>Lektion 06</h2><div class="paragraph heading"><p>Themen</p></div>
+<div class="ulist"><ul><li><p>Einführung in HSQLDB</p></li><li><p>JdbcTemplate und JdbcDaoSupport</p></li><li><p>Exception Handling</p></li><li><p>Connection Pools</p></li><li><p>TransactionTemplate</p></li><li><p>Deklarative Transaktionen</p></li></ul></div></section>
+<section><section id="_hsqldb"><h2>HSQLDB</h2><div class="paragraph heading"><p>HSQLDB in Stichworten</p></div><div class="ulist"><ul><li><p>Freie, vollständig in Java programmierte relationale SQL-Datenbank</p></li><li><p>Bestandteil von OpenOffice und LibreOffice</p></li><li><p>Sehr schlank (nur ein JAR)</p></li><li><p>Als In-Memory-Datenbank verwendbar (nützlich für Tests)</p></li><li><p>Alternative: H2</p></li></ul></div></section><section id="_verwendung_in_process"><h2>Verwendung <em>In-Process</em></h2><div class="paragraph"><p>Notwendige Abhängigkeit:</p></div>
+<div class="literalblock"><div class="content"><pre>compile 'org.hsqldb:hsqldb:2.4.1'</pre></div></div>
+<div class="paragraph"><p>Datenbankverbindung aufbauen:</p></div>
+<div class="title">JdbcSamples.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="predefined-type">String</span> jdbcUrl = <span class="string"><span class="delimiter">&quot;</span><span class="content">jdbc:hsqldb:mem:mymemdb</span><span class="delimiter">&quot;</span></span>; <span class="comment">// In-Memory-Datenbank mit Name 'mymemdb'</span>
+<span class="predefined-type">Class</span>.forName(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.hsqldb.jdbc.JDBCDriver</span><span class="delimiter">&quot;</span></span>);
+<span class="predefined-type">Connection</span> connection = <span class="predefined-type">DriverManager</span>.getConnection(jdbcUrl, <span class="string"><span class="delimiter">&quot;</span><span class="content">SA</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>);</code></pre>
+<div class="paragraph"><p>JDBC-URL für Standalone Datenbank:</p></div>
+<div class="literalblock"><div class="content"><pre>jdbc:hsqldb:file:build/standalonedb</pre></div></div></section><section id="_verwendung_als_server"><h2>Verwendung als Server</h2><div class="paragraph"><p>Aufruf:</p></div>
+<div class="literalblock"><div class="content"><pre>java -cp hsqldb-2.4.1.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 xdb</pre></div></div>
+<div class="paragraph"><p>JDBC-URL:</p></div>
+<div class="literalblock"><div class="content"><pre>jdbc:hsqldb:hsql://localhost/xdb</pre></div></div>
+<div class="paragraph"><p><a href="http://hsqldb.org/doc/guide/running-chapt.html">&#8594; HSQLDB Guide:Running and Using HyperSQL</a></p></div></section><section id="_datenbank_management_tool"><h2>Datenbank Management Tool</h2><div class="paragraph"><p>Aufruf:</p></div>
+<div class="literalblock"><div class="content"><pre>java -cp hsqldb-2.4.1.jar org.hsqldb.util.DatabaseManagerSwing</pre></div></div>
+<div class="paragraph"><p><br></p></div>
+<div class="paragraph"><p>Mögliche Alternativen:</p></div>
+<div class="ulist"><ul><li><p>Datenbankmanagement-Tool der jeweiligen IDE</p></li><li><p><a href="http://squirrel-sql.sourceforge.net/">&#8594; SQuirreL SQL Client</a></p></li></ul></div></section></section>
+<section id="_aufgabe_1_arbeiten_mit_hsqldb"><h2>Aufgabe 1: Arbeiten mit HSQLDB</h2><div class="olist arabic"><ol class="arabic"><li><p>Starten Sie einen HSQLDB-Server und lassen Sie die <code>tx.hsql.AccessDbTests</code> laufen.</p><div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Verwenden Sie das <code>hsqldb-server</code> Projekt</td></tr></table></div></li><li><p>Verbinden Sie sich mit einem <em>Datenbank Management Tool</em> und führen Sie damit
+folgendes SQL-Statement aus:</p><pre class="CodeRay listingblock"><code class="sql language-sql"><span class="class">select</span> <span class="integer">1</span> + <span class="integer">1</span>, current_timestamp <span class="keyword">from</span> (<span class="keyword">values</span>(<span class="integer">0</span>))</code></pre></li><li><p>Wo liegen die Datenbank-Dateien der Datenbank, die Sie soeben angelegt haben?</p></li></ol></div></section>
+<section><section id="_datenbankzugriff"><h2>Datenbankzugriff</h2><div class="paragraph heading"><p>Datenbankzugriff per JDBC</p></div><div class="title">JdbcSamples.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="predefined-type">String</span> sql = <span class="string"><span class="delimiter">&quot;</span><span class="content">select ? + 1 from (values(0))</span><span class="delimiter">&quot;</span></span>;
+<span class="keyword">try</span> (<span class="predefined-type">PreparedStatement</span> stmt = connection.prepareStatement(sql)) {
+    stmt.setInt(<span class="integer">1</span>, <span class="integer">3</span>);
+    <span class="keyword">try</span> (<span class="predefined-type">ResultSet</span> rs = stmt.executeQuery()) {
+        assertThat(rs.next()).isTrue();
+        assertThat(rs.getInt(<span class="integer">1</span>)).isEqualTo(<span class="integer">4</span>);
+    }
+}</code></pre></section><section id="_jdbctemplate"><h2>JdbcTemplate</h2><div class="ulist"><ul><li><p>Entwurfsmuster: Template-Method</p></li><li><p>Vereinfacht die Ausführung von JDBC-Statements</p></li><li><p>Mapping von Abfrageergebnissen auf Java-Objekte</p></li><li><p>Übersetzt <em>SQLExceptions</em> auf einheitliche Exception-Hierarchie</p></li><li><p>Alternativen:</p><div class="ulist"><ul><li><p><code>NamedParameterJdbcTemplate</code></p></li><li><p>SimpleJdbc Klassen, z. B. <code>SimpleJdbcInsert</code></p></li></ul></div></li></ul></div>
+<div class="paragraph heading"><p>Verwendung:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="predefined-type">String</span> sql = <span class="string"><span class="delimiter">&quot;</span><span class="content">select ? + 1 from (values(0))</span><span class="delimiter">&quot;</span></span>;
+<span class="predefined-type">Integer</span> result = jdbcTemplate.queryForObject(sql, <span class="predefined-type">Integer</span>.class, <span class="integer">3</span>);
+assertThat(result).isEqualTo(<span class="integer">4</span>);</code></pre>
+<div class="paragraph"><p><a href="https://docs.spring.io/spring/docs/5.3.6/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html">
+&#8594; Javadocs</a></p></div></section><section id="_aufgabe_2_datenbankzugriff_mit_jdbctemplate"><h2>Aufgabe 2: Datenbankzugriff mit JdbcTemplate</h2><div class="olist arabic"><ol class="arabic"><li><p>Implementieren Sie die verschiedenen Schritte eines vollständigen
+CRUD-Tests (Create, Read, Update, Delete) aus, indem Sie die Aufgaben
+in <code>tx.jdbc.JdbcTemplateTests</code> lösen.</p></li><li><p>Führen Sie den Test mit verschiedenen <em>DataSources</em> aus. Die <code>DataSourceConfig</code>
+bietet dafür mehrere Konfigurationen, die Sie über Profile auswählen können.</p></li><li><p>Debuggen Sie den Test und prüfen Sie
+nach jedem Schritt die Änderung in der Datenbank.</p></li></ol></div></section><section id="_jdbcdaosupport"><h2>JdbcDaoSupport</h2><div class="ulist"><ul><li><p>Entwurfsmuster: Data Access Object</p></li><li><p>Abstrakte Basisklasse</p></li><li><p>Zusätzliche Kapselung der Framework-Klassen</p></li><li><p>Zugriff auf DataSource, JdbcTemplate und Connection</p></li><li><p>Einschränkung: nur Setter-Injection</p></li></ul></div></section><section id="_aufgabe_3_optional_nutzung_von_jdbcdaosupport"><h2>Aufgabe 3 (optional): Nutzung von JdbcDaoSupport</h2><div class="paragraph"><p>Nachfolgend soll die Logik zur Persistierung von Personen in ein eigenes DAO
+verschoben werden.</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>Lassen Sie die Klasse <code>PersonDaoImpl</code> die Klasse <code>JdbcDaoSupport</code> erweitern.
+Welche zusätzliche Funktionalität erhalten Sie dadurch?</p></li><li><p>Implementieren Sie die Methodenrümpfe des DAOs.
+Hierzu können Sie sich an den <code>JdbcTemplateTests</code> orientieren.</p></li><li><p>Passen Sie die eingebettete Konfiguration im <code>PersonDaoTest</code> so an, dass das <code>PersonDao</code>
+korrekt konfiguriert wird.</p></li></ol></div></section></section>
+<section><section id="_exception_handling"><h2>Exception Handling</h2><div class="ulist"><ul><li><p>Quellen für Exceptions</p><div class="ulist"><ul><li><p>JPA</p></li><li><p>Hibernate</p></li><li><p>JDBC (z.B. SQLException)</p></li><li><p>Datenbanktreiber</p></li></ul></div></li><li><p>Checked vs. Runtime Exceptions</p></li></ul></div></section><section id="_dataaccessexception"><h2>DataAccessException</h2><div class="ulist"><ul><li><p>Ziel: einheitliche Hierarchie von Runtime Exceptions</p></li><li><p>Automatisches Mapping</p></li><li><p><code>DataAccessException</code></p><div class="ulist"><ul><li><p><code>DataIntegrityViolationException</code>: Verletzung von Constraints</p></li><li><p><code>DuplicateKeyException</code>: Verletzung von Schlüssel-Constraints</p></li><li><p><code>EmptyResultDataAccessException</code>: Leere Ergebnismenge</p></li><li><p><code>TypeMismatchDataAccessException</code>: Fehler beim Mapping</p></li></ul></div></li></ul></div></section><section id="_exception_hierarchie"><h2>Exception Hierarchie</h2><div class="imageblock" style=""><img src="images/lesson06/DataAccessException.gif" alt="DataAccessException" height="700"></div></section></section>
+<section><section id="_connection_pools"><h2>Connection Pools</h2><div class="paragraph heading"><p>Interaktion mit einer Datenbank</p></div><div class="olist arabic"><ol class="arabic"><li><p>Initialisieren einer <code>Connection</code> durch <code>JdbcDriver</code></p></li><li><p>Aufbau einer TCP-Verbindung</p></li><li><p>Login</p></li><li><p>Ausführen von <code>Query</code> bzw. <code>Statement</code></p></li><li><p>Logout</p></li><li><p>Schließen der TCP-Verbindung</p></li><li><p>Schließen der <code>Connection</code></p></li></ol></div><div class="paragraph"><p><strong>Auf- und Abbau von Datenbankverbindungen ist teuer!</strong></p></div></section><section id="_connection_pool"><h2>Connection Pool</h2><div class="ulist"><ul><li><p>Wiederverwendung von Connections</p></li><li><p>Konfiguration als DataSource</p></li><li><p>Implementierungen</p><div class="ulist"><ul><li><p>Apache Commons DBCP: <code>BasicDataSource</code></p></li><li><p>HikariCP: <code>HikariDataSource</code></p></li><li><p>C3P0: <code>ComboPooledDataSource</code></p></li><li><p>Tomcat JDBC Connection Pool: <code>DataSource</code></p></li></ul></div></li><li><p>Wichtige Optimierungsparameter</p><div class="ulist"><ul><li><p># Verbindungen initial</p></li><li><p># Verbindungen maximal</p></li></ul></div></li></ul></div></section><section id="_konfiguration_apache_commons_dbcp"><h2>Konfiguration Apache Commons DBCP</h2><div class="title">DataSourceConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java">        BasicDataSource ds = <span class="keyword">new</span> BasicDataSource();
+        ds.setDriverClassName(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.hsqldb.jdbc.JDBCDriver</span><span class="delimiter">&quot;</span></span>);
+        ds.setUrl(jdbcUrl);
+        ds.setUsername(<span class="string"><span class="delimiter">&quot;</span><span class="content">SA</span><span class="delimiter">&quot;</span></span>);
+        ds.setPassword(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>);
+        ds.setInitialSize(<span class="integer">1</span>);
+        ds.setMaxTotal(<span class="integer">10</span>);</code></pre></section><section id="_konfiguration_hikaricp"><h2>Konfiguration HikariCP</h2><div class="title">DataSourceConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java">        HikariConfig config = <span class="keyword">new</span> HikariConfig();
+        config.setJdbcUrl(jdbcUrl);
+        config.setUsername(<span class="string"><span class="delimiter">&quot;</span><span class="content">SA</span><span class="delimiter">&quot;</span></span>);
+        config.setPassword(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>);
+        config.setMaximumPoolSize(<span class="integer">10</span>);
+        config.addDataSourceProperty(<span class="string"><span class="delimiter">&quot;</span><span class="content">cachePrepStmts</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span>);
+        config.addDataSourceProperty(<span class="string"><span class="delimiter">&quot;</span><span class="content">prepStmtCacheSize</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">250</span><span class="delimiter">&quot;</span></span>);
+        config.addDataSourceProperty(<span class="string"><span class="delimiter">&quot;</span><span class="content">prepStmtCacheSqlLimit</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">2048</span><span class="delimiter">&quot;</span></span>);
+
+        HikariDataSource ds = <span class="keyword">new</span> HikariDataSource(config);</code></pre></section><section id="_aufgabe_4_verwendung_eines_connection_pools"><h2>Aufgabe 4: Verwendung eines Connection Pools</h2><div class="olist arabic"><ol class="arabic"><li><p>Setzen Sie in der <code>DataSourceConfig</code> zwei Connection Pools auf Basis von Apache Commons DBCP und HikariCP auf, welche
+über entsprechende Profile aktiviert werden können. Beschränken Sie die Pools auf maximal 10 zeitgleiche Verbindungen.</p></li></ol></div></section></section>
+<section><section id="_transaktionen"><h2>Transaktionen</h2><div class="paragraph heading"><p><strong>ACID</strong> Eigenschaften von Transaktionen:</p></div><div class="ulist"><ul><li><p><strong>A</strong>tomicity (Abgeschlossenheit)</p></li><li><p><strong>C</strong>onsistency (Konsistenzerhaltung)</p></li><li><p><strong>I</strong>solation (Abgrenzung)</p></li><li><p><strong>D</strong>urability (Dauerhaftigkeit)</p></li></ul></div></section><section id="_isolation"><h2>Isolation</h2><div class="paragraph"><p>Ausgangssituation: Konkurrierende Ausführung zweier Transaktionen A und B</p></div>
+<div class="ulist"><ul><li><p><strong>Dirty Read</strong>: A liest nicht commitete Werte von B</p></li><li><p><strong>Non-repeatable Read</strong>: A liest andere Werte nach Commit von B</p></li><li><p><strong>Phantom Read</strong>: A liest zusätzliche Zeilen nach Commit von B</p></li><li><p><strong>Lost Update</strong>: A überschreibt Änderungen von B</p></li></ul></div></section><section id="_transaktionen_mit_jdbc"><h2>Transaktionen mit JDBC</h2><div class="title">JdbcSamples.java</div><pre class="CodeRay listingblock"><code class="java language-java">connection.setAutoCommit(<span class="predefined-constant">false</span>);
+<span class="comment">// do something here ...</span>
+connection.commit();</code></pre></section><section id="_spring_transaktionsmanager"><h2>Spring Transaktionsmanager</h2><div class="paragraph"><p>Implementierungen von <code>PlatformTransactionManager</code>:</p></div>
+<div class="ulist"><ul><li><p><code>DataSourceTransactionManager</code></p></li><li><p><code>JpaTransactionManager</code></p></li><li><p><code>HibernateTransactionManager</code></p></li><li><p><code>JtaTransactionManager</code> (verteilte Transaktionen)</p><div class="ulist"><ul><li><p>benötigt JTA-Umgebung (Application-Server) oder</p></li><li><p>JTA-Implementierung (z. B. Atomikos, Bitronix)</p></li></ul></div></li></ul></div></section><section id="_transactiontemplate_verwenden"><h2>TransactionTemplate verwenden</h2><div class="title">TxSamples.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="type">void</span> executeTx() {
+    <span class="predefined-type">Integer</span> result = transactionTemplate.execute(<span class="local-variable">this</span>::withinTx);
+    assertThat(result).isEqualTo(<span class="integer">2</span>);
+}
+
+<span class="directive">private</span> <span class="predefined-type">Integer</span> withinTx(TransactionStatus status) {
+    <span class="keyword">return</span> jdbcTemplate.queryForObject(<span class="string"><span class="delimiter">&quot;</span><span class="content">select 1 + 1 from (values(0))</span><span class="delimiter">&quot;</span></span>, <span class="predefined-type">Integer</span>.class);
+}</code></pre></section></section>
+<section id="_aufgabe_5_transaktionen_mit_dem_transactiontemplate"><h2>Aufgabe 5: Transaktionen mit dem TransactionTemplate</h2><div class="olist arabic"><ol class="arabic"><li><p>Fügen Sie in der Konfiguration für <code>TransactionTemplateTests</code> Beans für
+<code>DataSourceTransactionManager</code> und <code>TransactionTemplate</code> hinzu.</p></li><li><p>Führen Sie den Test mit dem Debugger aus und halten Sie ihn nach dem
+ersten Insert an. Prüfen Sie den Inhalt der Tabelle <em>person</em>.</p></li><li><p>Was genau passiert beim Ausführen von <code>insertWithConflict</code>?</p></li></ol></div></section>
+<section><section id="_deklarative_transaktionen"><h2>Deklarative Transaktionen</h2><div class="paragraph"><p>Man kann Transaktionsgrenzen auch deklarativ (d. h. mit <code>@Transactional</code>) angeben:</p></div><div class="ulist"><ul><li><p><code>@EnableTransactionManagement</code> ist notwendig, um deklarative Transaktionen zu aktivieren</p></li><li><p><code>@Transactional</code></p><div class="ulist"><ul><li><p>an Klasse oder Methode</p></li><li><p>erfordert JDK DynamicProxy (Default), CGLIB oder AspectJ</p></li></ul></div></li><li><p>Automatisches Commit sowie Rollback bei Runtime Exceptions</p></li><li><p>Alternative Implementierungen (weitgehend austauschbar):</p><div class="ulist"><ul><li><p>Spring: <code>org.springframework.transaction.annotation.Transactional</code></p></li><li><p>EJB: <code>javax.transaction.Transactional</code></p></li></ul></div></li></ul></div></section><section id="_enabletransactionmanagement"><h2>@EnableTransactionManagement</h2><div class="title">org.springframework.transaction.annotation.EnableTransactionManagement</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Target</span>(<span class="predefined-type">ElementType</span>.TYPE)
+<span class="annotation">@Retention</span>(<span class="predefined-type">RetentionPolicy</span>.RUNTIME)
+<span class="annotation">@Documented</span>
+<span class="annotation">@Import</span>(TransactionManagementConfigurationSelector.class) <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="directive">public</span> <span class="annotation">@interface</span> EnableTransactionManagement {
+<span class="type">boolean</span> proxyTargetClass() <span class="keyword">default</span> <span class="predefined-constant">false</span>;
+    <span class="type">boolean</span> proxyTargetClass() <span class="keyword">default</span> <span class="predefined-constant">false</span>;
+    AdviceMode mode() <span class="keyword">default</span> AdviceMode.PROXY; <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="type">int</span> order() <span class="keyword">default</span> Ordered.LOWEST_PRECEDENCE;
+}</code></pre>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td><code>Enable</code> Annotationen importieren immer irgendwelche Konfigurationsklassen</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td><code>AdviceMode.PROXY</code> oder <code>AdviceMode.ASPECTJ</code></td></tr></table></div></section><section id="_transactionmanagementconfigurationselector"><h2>TransactionManagementConfigurationSelector</h2><div class="paragraph"><p><code>TransactionManagementConfigurationSelector</code> implementiert <code>ImportSelector</code></p></div>
+<div class="title">org.springframework.transaction.annotation.TransactionManagementConfigurationSelector</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">protected</span> <span class="predefined-type">String</span><span class="type">[]</span> selectImports(AdviceMode adviceMode) {
+    <span class="keyword">switch</span> (adviceMode) {
+        <span class="keyword">case</span> PROXY:
+            <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">String</span><span class="type">[]</span> {AutoProxyRegistrar.class.getName(),
+                ProxyTransactionManagementConfiguration.class.getName()};
+        <span class="keyword">case</span> ASPECTJ:
+            <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">String</span><span class="type">[]</span> {
+                TransactionManagementConfigUtils.TRANSACTION_ASPECT_CONFIGURATION_CLASS_NAME};
+        <span class="keyword">default</span>:
+            <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+}</code></pre>
+<div class="paragraph"><p>Importiert Konfigurationsklasse, abhängig von dem <code>mode</code> Parameter bei <code>@EnableTransactionManagement</code>.</p></div></section><section id="_proxytransactionmanagementconfiguration"><h2>ProxyTransactionManagementConfiguration</h2><div class="title">org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ProxyTransactionManagementConfiguration</span>
+        <span class="directive">extends</span> AbstractTransactionManagementConfiguration {
+
+    <span class="annotation">@Bean</span>(name = TransactionManagementConfigUtils.TRANSACTION_ADVISOR_BEAN_NAME)
+    <span class="directive">public</span> BeanFactoryTransactionAttributeSourceAdvisor transactionAdvisor() {...}
+
+    <span class="annotation">@Bean</span>
+    <span class="directive">public</span> TransactionAttributeSource transactionAttributeSource() {
+        <span class="keyword">return</span> <span class="keyword">new</span> AnnotationTransactionAttributeSource();
+    }
+
+    <span class="annotation">@Bean</span>
+    <span class="directive">public</span> TransactionInterceptor transactionInterceptor() {...}
+}</code></pre>
+<div class="paragraph"><p>Verwendet AOP, um Transaktionsverwaltung hinzuzufügen.</p></div></section><section id="_transactional"><h2>Transactional</h2><div class="title">org.springframework.transaction.annotation.Transactional</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="annotation">@interface</span> Transactional {
+    <span class="annotation">@AliasFor</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">transactionManager</span><span class="delimiter">&quot;</span></span>)
+    <span class="predefined-type">String</span> value() <span class="keyword">default</span> <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="annotation">@AliasFor</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>)
+    <span class="predefined-type">String</span> transactionManager() <span class="keyword">default</span> <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
+
+    Propagation propagation() <span class="keyword">default</span> Propagation.REQUIRED;
+
+    Isolation isolation() <span class="keyword">default</span> Isolation.DEFAULT;
+
+    <span class="type">int</span> timeout() <span class="keyword">default</span> -<span class="integer">1</span>;
+
+    <span class="type">boolean</span> readOnly() <span class="keyword">default</span> <span class="predefined-constant">false</span>;
+
+    <span class="predefined-type">Class</span>&lt;? <span class="directive">extends</span> <span class="predefined-type">Throwable</span>&gt;<span class="type">[]</span> rollbackFor() <span class="keyword">default</span> {};
+
+    <span class="predefined-type">String</span><span class="type">[]</span> rollbackForClassName() <span class="keyword">default</span> {};
+
+    <span class="predefined-type">Class</span>&lt;? <span class="directive">extends</span> <span class="predefined-type">Throwable</span>&gt;<span class="type">[]</span> noRollbackFor() <span class="keyword">default</span> {};
+
+    <span class="predefined-type">String</span><span class="type">[]</span> noRollbackForClassName() <span class="keyword">default</span> {};
+}</code></pre></section><section id="_verwendung"><h2>Verwendung</h2><div class="paragraph"><p>Konfiguration:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="annotation">@EnableTransactionManagement</span></code></pre>
+<div class="paragraph"><p>Eine transaktionale Service-Methode:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Service</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyServiceImpl</span> <span class="directive">implements</span> MyService {
+
+    <span class="annotation">@Override</span>
+    <span class="annotation">@Transactional</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="directive">public</span> <span class="type">void</span> doSomething() {
+        <span class="comment">// ...</span>
+    }
+}</code></pre>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Statt einer Methode kann man auch die ganze Klasse mit <code>@Transactional</code> annotieren.</td></tr></table></div></section><section id="_propagation"><h2><em>Propagation</em></h2><div class="ulist"><ul><li><p><code><strong>REQUIRED</strong></code> (default) startet Tx bei Bedarf</p></li><li><p><code><strong>REQUIRES_NEW</strong></code> startet neue Tx</p></li><li><p><code><strong>MANDATORY</strong></code> wirft Exception, wenn keine Tx</p></li><li><p><code><strong>SUPPORTS</strong></code> ggf. Ausführung im Tx-Context</p></li><li><p><code><strong>NOT_SUPPORTED</strong></code> suspendiert ggf. Tx</p></li><li><p><code><strong>NEVER</strong></code> wirft Exception bei Tx</p></li><li><p><code><strong>NESTED</strong></code> (nur Spring) verschachtelte Tx, falls unterstützt,
+sonst wie <code>REQUIRED</code></p></li></ul></div>
+<div class="paragraph"><p>Verwendung:
+* Spring: <code>@Transactional(propagation = Propagation.REQUIRED)</code>
+* EJB: <code>@Transactional(Transactional.TxType.REQUIRED)</code></p></div></section><section id="_isolation_2"><h2><em>Isolation</em></h2><div class="ulist"><ul><li><p><code><strong>DEFAULT</strong></code> verwendet Isolation Level der DB</p></li><li><p><code><strong>SERIALIZABLE</strong></code> verhindert Dirty Reads, non-repeatable Reads, Phantom Reads und
+Lost Updates</p></li><li><p><code><strong>REPEATABLE_READ</strong></code> verhindert Dirty Reads, non-repeatable Reads und Lost Updates,
+erlaubt Phantom Reads</p></li><li><p><code><strong>READ_COMMITTED</strong></code> verhindert Dirty Reads, erlaubt non-repeatable Reads, Phantom Reads
+und Lost Updates</p></li><li><p><code><strong>READ_UNCOMMITTED</strong></code> erlaubt Dirty Reads, non-repeatable Reads, Phantom Reads
+und Lost Updates</p></li></ul></div></section><section id="_isolation_3"><h2><em>Isolation</em></h2><div class="paragraph"><p>Verwendung:</p></div>
+<div class="ulist"><ul><li><p>Spring: <code>@Transactional(isolation = Isolation.DEFAULT)</code></p></li></ul></div>
+<div class="paragraph"><p>Auf Seite der DB zu beachten:</p></div>
+<div class="ulist"><ul><li><p>Default Isolation Level und Konfiguration</p></li><li><p>Locking</p></li></ul></div></section><section id="_pitfalls"><h2>Pitfalls</h2><div class="ulist"><ul><li><p><code>@Transactional</code> wirkt nicht bei Selbstaufrufen (Umgehung des Proxys)!</p></li><li><p>Automatisches Rollback per Default nicht bei Checked Exceptions! Abhilfe: <code>rollbackFor=Exception.class</code></p></li><li><p><code>readOnly=true</code> unterbindet nicht zwingend schreibende Zugriffe!</p></li></ul></div>
+<div class="imageblock" style=""><img src="images/attention.svg" alt="attention" height="300"></div></section></section>
+<section><section id="_aufgabe_6_deklarative_transaktionen"><h2>Aufgabe 6: Deklarative Transaktionen</h2><div class="paragraph heading"><p>Schritt 1: ProxyTxTests</p></div><div class="paragraph"><p>Sehen Sie sich <code>tx.transactional.ProxyTxTests</code> an und beantworten Sie
+folgende Fragen:</p></div><div class="olist arabic"><ol class="arabic"><li><p>Was müssen Sie ergänzen, damit <code>testProxy</code> funktionert?
+(<em>Hinweis</em>: Deklarative Transaktionen müssen erst per Konfiguration
+ aktiviert werden.)</p></li><li><p>Was passiert, wenn Sie ein <code>select * from person</code> ausführen,
+während Sie den Test in der <code>insert</code> Methode angehalten haben?</p></li><li><p>Sehen Sie sich den Stacktrace beim Ausführen der <code>insert</code> Methode
+an. Welche Methodenaufrufe dienen der Transaktionsverwaltung?</p></li><li><p>Die Klasse <code>ProxyTests</code> ist mit <code>@Rollback</code> annotiert. Was passiert,
+wenn Sie diese Annotation durch <code>@Commit</code> ersetzen?</p></li><li><p>Was passiert, wenn Sie <code>@Transactional</code> bei <code>ProxyTxTests</code> weglassen?</p></li><li><p>Welche Auswirkung hat <code>@EnableTransactionManagement(proxyTargetClass = true)</code>?</p></li></ol></div></section><section id="_schritt_2_optional_aspectjtxtests"><h2>Schritt 2 (optional): AspectJTxTests</h2><div class="paragraph"><p>Führen Sie nun <code>tx.transactional.AspectJTxTests</code> aus.</p></div>
+<div class="paragraph"><p>Beachten Sie, dass
+Sie dafür den VM-Parameter <code>-javaagent:&lt;spring-instrument.jar&gt;</code> angegeben
+müssen. Das <code>&lt;spring-instrument.jar&gt;</code> ist hier ein Platzhalter für den
+Pfad zu diesem jar (siehe Abhängigkeiten im CLASSPATH).</p></div>
+<div class="paragraph"><p>Wie ändert sich der Stacktrace beim Ausführen einer Transaktion
+im Vergleich zu <code>ProxyTxTests</code>?</p></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Wichtig für diese Aufgabe: Probieren geht über Studieren!</td></tr></table></div></section></section>
+<section id="_datenbankzugriff_transaktionen"><h2>Datenbankzugriff &amp; Transaktionen</h2><div class="paragraph heading"><p>Fragen?</p></div>
+<div class="paragraph"><p><a href="lesson07-aop.html">&#8594; Weiter zu AOP</a></p></div>
+<div class="paragraph"><p><a href="agenda.html">Inhalt</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

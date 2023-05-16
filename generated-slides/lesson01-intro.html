@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 1 - Einführung</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script><script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_1_einführung" data-state="no-title-footer"><h2>Lektion 1 - Einführung</h2><div class="paragraph center"><p>Was ist Spring?</p></div></section>
+<section id="_was_ist_spring"><h2>Was ist Spring?</h2><div class="paragraph heading"><p>Spring &#8230;&#8203;</p></div>
+<div class="ulist"><ul><li><p>ist ein Framework (mehr als eine Bibliothek, kein Application Server)</p></li><li><p>benötigt nur JDK und einige Bibliotheken (jars)</p></li><li><p>kann fast überall integriert werden</p></li><li><p>kann fast alles integrieren</p></li></ul></div></section>
+<section id="_spring_ökosystem"><h2>Spring-Ökosystem</h2><div class="paragraph center"><p><span class="image"><img src="images/spring-ecosystem.jpg" alt="spring ecosystem"></span></p></div></section>
+<section id="_das_versprechen_von_enterprise_java_ee"><h2>Das Versprechen von Enterprise Java (EE)</h2><div class="paragraph"><p>Entwicklung kann sich auf die <strong>Geschäftslogik</strong> fokussieren.<br>
+Die Infrastruktur kümmert sich um <strong>querschnittliche</strong> Themen, wie</p></div>
+<div class="ulist"><ul><li><p>Transaktionsmanagement</p></li><li><p>Security</p></li><li><p>Ausfallsicherheit</p></li><li><p>Skalierung</p></li><li><p>Persistenz</p></li><li><p>Validierung</p></li><li><p>Fremdsystemeinbindung</p></li></ul></div></section>
+<section id="_warum_ee_mit_spring"><h2>Warum EE mit Spring?</h2><div class="ulist"><ul><li><p>Einfachheit (Verwendung von POJOs)</p></li><li><p>Testbarkeit</p></li><li><p>Verbreitungsgrad</p></li><li><p>Einfache Integration</p></li><li><p>Viele fertige Bausteine</p></li><li><p>Lego-Prinzip</p></li></ul></div>
+<aside class="notes"><div class="paragraph"><p>Lego-Prinzip heißt:</p></div>
+<div class="ulist"><ul><li><p>Es gibt für alles definierte Schnittstellen</p></li><li><p>Technologien sind als Bausteine mit diesen Schnittstellen verpackt</p></li><li><p>Als Entwickler stöpselt man nur noch diese Bausteine zusammen</p></li></ul></div></aside></section>
+<section id="_wie_hat_alles_begonnen" class="columns"><h2>Wie hat alles begonnen?</h2><div class="openblock"><div class="content"><div class="paragraph"><p>Prinzipien:</p></div>
+<div class="ulist"><ul><li><p>Dependency Injection (DI)</p></li><li><p>Aspektorientierte Programmierung (AOP)</p></li><li><p>Template-Method Pattern</p></li></ul></div></div></div>
+<div class="paragraph"><p><span class="image" style="float: right"><img src="images/book_rod_johnson.jpg" alt="book rod johnson"></span></p></div></section>
+<section id="_spring_releases"><h2>Spring Releases</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:14.2857%"><col style="width:14.2857%"><col style="width:14.2857%"><col style="width:57.1429%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Datum</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Version</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">ab JDK</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Neuigkeit</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">2002</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Buch von Rod Johnson erschienen</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">06/2003</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Erste Freigabe</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">03/2004</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Offizielle 1.0 Freigabe</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">10/2006</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">2.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">XML-Namespaces, Autowiring</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">11/2007</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">2.5</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">SE6 + EE 5, Annotationen</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">12/2009</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">3.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">EL, Java-Config, REST</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">12/2013</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">4.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Lambda-Ausdrücke</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">09/2017</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">5.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Reactive Streams, WebFlux, Kotlin</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">05/2019</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">5.1</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Java 11, Detailverbesserungen</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">11/2022</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">6.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">17</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Java 17, Spring Boot 3, Jakarta EE 9</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">05/2023</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">6.0.9</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">17</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Fixes, Improvements</p></td></tr></table>
+<div class="paragraph"><p><a href="https://github.com/spring-projects/spring-framework/wiki/What&#8217;s-New-in-Spring-Framework-6.x">
+&#8594; What&#8217;s New in Spring Framework 6.x</a></p></div></section>
+<section id="_spring_versionierung"><h2>Spring Versionierung</h2><div class="paragraph"><p><strong>xx.yy.zz</strong></p></div>
+<div class="ulist"><ul><li><p>xx: Technologie-Version (Abhängigkeit zu JDK-Version)</p></li><li><p>yy: Feature-Release (mit API-Erweiterungen)</p></li><li><p>zz: Bugfix-Release (ohne API-Änderungen)</p></li></ul></div></section>
+<section id="_hintergrund"><h2>Hintergrund</h2><div class="ulist"><ul><li><p>Initiatoren: Rod Johnson, Jürgen Höller</p></li><li><p>Apache 2.0 Lizenz</p></li><li><p>Herausgeber: Pivotal Software Inc.</p></li><li><p>Projekt Lead: Jürgen Höller</p></li><li><p>Projektseite: <a href="https://spring.io/projects/spring-framework" class="bare">https://spring.io/projects/spring-framework</a></p></li><li><p>Sourcen: <a href="https://github.com/spring-projects/spring-framework" class="bare">https://github.com/spring-projects/spring-framework</a></p></li></ul></div></section>
+<section id="_module"><h2>Module</h2><div class="paragraph center"><p><span class="image"><img src="images/spring-overview.png" alt="spring overview" height="800"></span></p></div></section>
+<section id="_alternativen"><h2>Alternativen</h2><div class="ulist"><ul><li><p>Jakarta EE (ehemals Java EE oder JEE), insb. CDI</p></li><li><p>Google Guice</p></li></ul></div></section>
+<section><section id="_dependency_injection"><h2>Dependency Injection</h2><div class="paragraph heading"><p>Herausforderung</p></div><div class="imageblock" style="text-align: center"><img src="images/di-context.svg" alt="di context" width="1200" height="600"></div></section><section id="_konsistente_konfiguration"><h2>Konsistente Konfiguration</h2><div class="imageblock" style="text-align: center"><img src="images/ioc.svg" alt="ioc" width="1200" height="600"></div></section><section id="_service_locator"><h2>Service Locator</h2><div class="imageblock" style="text-align: center"><img src="images/service-locator.svg" alt="service locator" width="1200" height="300"></div>
+<div class="paragraph"><p>Typisch:</p></div>
+<div class="ulist"><ul><li><p>Durch Umgebung / Container bereitgestellt.</p></li><li><p>Application Server: Standardisierte API mit Service-Locator</p><div class="ulist"><ul><li><p>Beispiel: JEE Container stellt Datenbank-Verbindung zur Verfügung</p></li></ul></div></li></ul></div></section><section id="_factory"><h2>Factory</h2><div class="imageblock" style="text-align: center"><img src="images/service-factory.svg" alt="service factory" width="1200" height="500"></div>
+<div class="paragraph"><p>Typisch</p></div>
+<div class="ulist"><ul><li><p>Standalone / Keine Abhängigkeit von der Umgebung</p></li><li><p>Klasse der Application-Factory ist Startparameter</p></li></ul></div></section><section id="_dependency_injection_di"><h2>Dependency Injection (DI)</h2><div class="imageblock" style="text-align: center"><img src="images/di.svg" alt="di" width="600" height="200"></div></section></section>
+<section><section id="_hypothetisches_anwendungsbeispiel"><h2>Hypothetisches Anwendungsbeispiel</h2><div class="paragraph"><p>Wiederverwendbare Bibliothek zum Speichern von
+benutzerspezifischen Voreinstellungen:</p></div><div class="title">PreferencesService.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">PreferencesService</span> {
+    <span class="type">void</span> savePreference(<span class="predefined-type">String</span> key, <span class="predefined-type">String</span> value);
+    <span class="predefined-type">String</span> loadPreference(<span class="predefined-type">String</span> key);
+}</code></pre></section><section id="_präzisierung_der_anforderungen"><h2>Präzisierung der Anforderungen</h2><div class="ulist"><ul><li><p>Anwendungen müssen eine Referenz auf den PreferencesService bekommen</p></li><li><p>PreferencesService benötigt ID des aktuellen Users</p></li><li><p>Persistenzschicht muss zum Anwendungskontext passen</p></li></ul></div></section><section id="_entwurf"><h2>Entwurf</h2><div class="imageblock" style="text-align: center"><img src="images/draft.svg" alt="draft" width="1600" height="350"></div>
+<div class="olist arabic"><div class="title">Problemstellungen:</div><ol class="arabic"><li><p>Wie kommt die Anwendung an den PreferencesService?</p></li><li><p>Wie kommt der PreferencesService an UserProvider und PreferencesRepository?</p></li></ol></div></section><section id="_lösung_1_service_locator"><h2>Lösung 1: Service Locator</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="predefined-type">ServiceRegistry</span> registry = ServiceRegistryFactory
+        .newInstance().getServiceRegistry();
+
+<span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="predefined-type">String</span> loadPreference(<span class="predefined-type">String</span> key) {
+    <span class="predefined-type">String</span> userId = registry
+            .getUserProvider()
+            .getUserId();
+    <span class="keyword">return</span> registry
+            .getPreferencesRepository()
+            .loadPreference(userId, key);
+}</code></pre></section><section id="_lösung_2_dependency_injection"><h2>Lösung 2: Dependency Injection</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">private</span> FxUserProvider userProvider;
+<span class="directive">private</span> JdbcPreferencesRepository preferencesRepository;
+<span class="directive">private</span> PreferencesServiceImpl preferencesService;
+
+<span class="directive">private</span> <span class="type">void</span> plumb() {
+    userProvider = <span class="keyword">new</span> FxUserProvider();
+    preferencesRepository = <span class="keyword">new</span> JdbcPreferencesRepository();
+    preferencesService = <span class="keyword">new</span> PreferencesServiceImpl();
+    preferencesService.setUserProvider(userProvider);
+    preferencesService.setPreferencesRepository(preferencesRepository);
+}</code></pre></section></section>
+<section id="_spring_einführung"><h2>Spring Einführung</h2><div class="paragraph heading"><p>Fragen?</p></div>
+<div class="paragraph"><p><a href="lesson02-setup.html">&#8594; Weiter zum Einstieg in die Entwicklung mit Spring</a></p></div>
+<div class="paragraph"><p><a href="agenda.html">Inhalt</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="firstCar" class="container.fragments.Car"/>
+
+    <bean id="firstCar2" name="bobbyCar,car2"
+          class="container.fragments.Car"/>
+
+    <!-- tag::engine[] -->
+    <bean id="engine" class="container.fragments.Engine">
+        <constructor-arg index="0" value="diesel"/>
+        <constructor-arg index="1" value="48"/>
+    </bean>
+    <!-- end::engine[] -->
+
+    <!-- tag::realCar[] -->
+    <bean id="realCar" class="container.fragments.Car">
+        <property name="color" value="yellow"/>
+        <property name="engine" ref="engine"/>
+    </bean>
+    <!-- end::realCar[] -->
+
+    <bean id="aircon" class="container.fragments.Feature">
+        <constructor-arg value="air conditioning"/>
+    </bean>
+
+    <!-- tag::luxuryCar[] -->
+    <bean id="luxuryCar" class="container.fragments.Car">
+        <property name="color" value="black"/>
+        <property name="engine">
+            <bean class="container.fragments.Engine">
+                <constructor-arg value="gas"/>
+                <constructor-arg value="120"/>
+            </bean>
+        </property>
+        <property name="features">
+            <list>
+                <ref bean="aircon"/>
+                <bean class="container.fragments.Feature">
+                    <constructor-arg value="radio"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <!-- end::luxuryCar[] -->
+
+    <!-- tag::specialCar[] -->
+    <bean id="specialCar" class="container.fragments.Car">
+        <property name="properties">
+                <props>
+                    <prop key="length">4.12</prop>
+                    <prop key="height">1.68</prop>
+                </props>
+        </property>
+    </bean>
+    <!-- end::specialCar[] -->
+</beans>
