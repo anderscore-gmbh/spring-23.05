@@ -50,22 +50,12 @@
             <version>20</version>
         </dependency>
 
-        <!-- API fuer Log4J-2 -->
+        <!-- Logging über SLF4J-API auf Log4J2-Engine -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>2.20.0</version>
         </dependency>
-        <!-- Logger-Engine (die eigentliche Implementierung des Loggings) -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-        </dependency>
-        <!-- SLF4J-API, das alle SLF4J-Logausgaben auf die Log4J-2 Engine lenkt -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-        </dependency>
-        <!-- Siehe auch https://logging.apache.org/log4j/2.0/runtime-dependencies.html -->
 
         <!-- Unittests mit JUnit 5 -->
         <dependency>
